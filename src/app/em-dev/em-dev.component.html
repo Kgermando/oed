@@ -1,0 +1,91 @@
+<div>
+  <mat-toolbar color="primary" class="toolbar-1">
+
+    <span class="menu-spacer"></span>
+
+     <span>
+        <a routerLink="/admin" mat-button matTooltip="Admin" routerLinkActive="active-link" >
+          <mat-icon aria-hidden="false" aria-label="Emergence et developpemrnt Admin">settings</mat-icon>
+        </a>
+      </span>
+
+    <div class="auth_cart">
+      <button mat-button [matMenuTriggerFor]="menu" matTooltip="Menu Authentification">
+        <mat-icon aria-hidden="false" aria-label="Emergence et developpemrnt profile">person</mat-icon>
+      </button> 
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/fastsmart/layouts/dashboard/profile" routerLinkActive="active-link" >
+          <mat-icon aria-hidden="false" aria-label="Profile Emergence et developpemrnt">perm_identity</mat-icon>
+          Profile
+        </button>
+        <button mat-menu-item (click)="signOut()" routerLinkActive="active-link" >
+          <mat-icon aria-hidden="false" aria-label="Logout Emergence et developpemrnt">exit_to_app</mat-icon>
+          Déconnexion
+        </button>
+        <button mat-menu-item routerLink="/fastsmart/auth/login" routerLinkActive="active-link">
+          <mat-icon aria-hidden="false" aria-label="login Emergence et developpemrnt">portrait</mat-icon>
+          Login
+        </button>
+        <button mat-menu-item routerLink="/fastsmart/auth/register" routerLinkActive="active-link">
+          <mat-icon aria-hidden="false" aria-label="Register Emergence et developpemrnt">person_add</mat-icon>
+          Créez un compte
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+
+  <mat-toolbar class="toobar-main mat-elevation-z6">
+    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a routerLink="/fastsmart/layouts" mat-button matTooltip="Emergence et developpemrnt">
+      <img src="../assets/img/logo.png" alt="logo Emergence et developpemrnt">
+    </a>
+    <span class="menu-spacer"></span>
+    <div fxShow="true" fxHide.lt-md>
+       
+        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+        
+    </div>
+    <div class="toolbar-main-mobile">
+      <a mat-button matTooltip="Categories" class="toolbar-main-1">
+        <mat-icon aria-hidden="false" aria-label="Emergence et developpemrnt categories">apps</mat-icon>
+          Appelez-Nous
+      </a>
+
+      <a mat-button matTooltip="Contactez Nous ici" class="toolbar-main-2">
+        <mat-icon aria-hidden="false" aria-label="Emergence et developpemrnt contact">call</mat-icon>
+          +243 81 888 00 00
+      </a>
+    </div>
+  </mat-toolbar>
+  
+    <mat-sidenav-container fxFlexFill>
+      <mat-sidenav #sidenav (click)="sidenav.close()">
+        <mat-nav-list>
+          <a routerLink="/fastsmart/layouts/home" mat-list-item routerLinkActive="active-link">
+            <mat-icon aria-hidden="false" aria-label="Emergence et developpemrnt home">home</mat-icon>
+            Acceuil
+          </a>
+          <a routerLink="/fastsmart/layouts/category" mat-list-item routerLinkActive="active-link">
+            <mat-icon aria-hidden="false" aria-label="Emergence et developpemrnt panier category">apps</mat-icon>
+            Categories
+          </a>
+          <a routerLink="/fastsmart/layouts/contact" mat-list-item routerLinkActive="active-link">
+            <mat-icon aria-hidden="false" aria-label=" Emergence et developpemrnt contactez nous">send</mat-icon>
+            Contact
+          </a>
+          <!-- <span *ngIf="authService.user$ | async as user">
+            <a routerLink="/admin" mat-list-item matTooltip="Admin" routerLinkActive="active-link" *ngIf="user?.roles.admin === true">
+             <mat-icon aria-hidden="false" aria-label="Emergence et developpemrnt Admin">settings</mat-icon>
+             Admin 
+           </a>
+         </span> -->
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content fxFlexFill>
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
