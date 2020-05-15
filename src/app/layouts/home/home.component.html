@@ -1,0 +1,60 @@
+<section class="home">
+    <div class="hero-slider">
+        <div class="hero">
+            <div class="hero-text">
+                <h2 class="hero-text-title">
+                    Bienvenue sur la plateforme <br>
+                    <span>Emergence & Développement</span> 
+                </h2>
+                <p class="hero-text-content">
+                    <!-- La plateforme d'adhesion des nouveau membres et partenaires. -->
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
+                </p>
+            </div>
+            <div class="hero-form">
+               <mat-card>
+                   <mat-horizontal-stepper  #stepper>
+                    <mat-step >
+                      <form >
+                        <ng-template matStepLabel>Fill out your name</ng-template>
+                        <mat-form-field>
+                          <mat-label>Name</mat-label>
+                          <input matInput placeholder="Last name, First name" >
+                        </mat-form-field>
+                        <div>
+                          <button mat-button matStepperNext>Next</button>
+                        </div>
+                      </form>
+                    </mat-step>
+                    <mat-step >
+                      <form >
+                        <ng-template matStepLabel>Fill out your address</ng-template>
+                        <mat-form-field>
+                          <mat-label>Address</mat-label>
+                          <input matInput  placeholder="Ex. 1 Main St, New York, NY"
+                                 required>
+                        </mat-form-field>
+                        <div>
+                          <button mat-button matStepperPrevious>Back</button>
+                          <button mat-button matStepperNext>Next</button>
+                        </div>
+                      </form>
+                    </mat-step>
+                    <mat-step>
+                      <ng-template matStepLabel>Done</ng-template>
+                      <p>You are now done.</p>
+                      <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button (click)="stepper.reset()">Reset</button>
+                      </div>
+                    </mat-step>
+                  </mat-horizontal-stepper>
+               </mat-card>
+                  
+                  
+            </div>
+        </div>
+    </div>
+</section>
