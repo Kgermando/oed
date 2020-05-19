@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { FormsMembresComponent } from './forms-membres/forms-membres.component';
 import { ContactComponent } from './contact/contact.component';
 import { FormsPartenairesComponent } from './forms-partenaires/forms-partenaires.component';
+import { AboutComponent } from './about/about.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'forms-membres', component: FormsMembresComponent },
     { path: 'forms-paternaires', component: FormsPartenairesComponent },
     { path: 'contact', component: ContactComponent },
+    { path: 'about', component: AboutComponent },
     
     { path: '', redirectTo: 'home', pathMatch: 'full'}
   ]}

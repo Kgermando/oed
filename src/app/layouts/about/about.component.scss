@@ -1,0 +1,87 @@
+@media screen and (max-width:960px) {
+    .about-header {
+        font-family: "Google Sans", Roboto, sans-serif;
+        height: 200px;
+        background-image: url('../../../assets/img/page-top-bg/4.jpg');
+        background-position: bottom;
+        background-repeat: no-repeat;
+        
+        h3 {
+            font-size: 38px;
+            color: #fff;
+            padding-top: 40px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-weight: 700;
+            line-height: 1.1;
+            text-align: center;
+        }
+    }
+
+    .about-content {
+        font-family: "Google Sans", Roboto, sans-serif;
+        padding-top: 20px;
+
+        h4 {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.1;
+            padding-top: 20px;
+            padding-left: 20px;
+        }
+
+        p {
+            text-align: justify;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+        .mat-form-field + .mat-form-field {
+            margin-left: 8px;
+        }
+          
+    }
+}
+
+
+
+@media screen and (min-width:960px) {
+    .about-header {
+        font-family: "Google Sans", Roboto, sans-serif;
+        height: 300px;
+        background-image: url('../../../assets/img/page-top-bg/4.jpg');
+        background-position: bottom;
+        background-repeat: no-repeat;
+        
+        h3 {
+            font-size: 38px;
+            color: #fff;
+            padding-top: 150px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-weight: 700;
+            line-height: 1.1;
+            text-align: center;
+        }
+    }
+
+    .about-content {
+        font-family: "Google Sans", Roboto, sans-serif;
+        padding-top: 20px;
+
+        h4 {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.1;
+            padding-top: 20px;
+            padding-left: 20px;
+        }
+
+        p {
+            text-align: justify;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+          
+    }
+}
