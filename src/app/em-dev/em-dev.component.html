@@ -1,33 +1,49 @@
 <div>
   <mat-toolbar color="primary" class="toolbar-1">
-
+    <a mat-button matTooltip="Contactez Nous ici" class="toolbar-main-2">
+      <mat-icon aria-hidden="false" aria-label="Emergence et developpement contact">call</mat-icon>
+        +243 82 56 41 900
+    </a>
+    <div class="pipe">
+      |
+    </div>
+    
+    <a mat-button matTooltip="Contactez Nous ici" class="toolbar-main-3">
+      <mat-icon aria-hidden="false" aria-label="Emergence et developpement contact">email</mat-icon>
+      jacquestshisumpa2013@gmail.com
+    </a>
+    
     <span class="menu-spacer"></span>
 
-     <span>
+      <!-- <span>
         <a routerLink="/admin" mat-button matTooltip="Admin" routerLinkActive="active-link" >
-          <mat-icon aria-hidden="false" aria-label="Emergence et developpemrnt Admin">settings</mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Emergence et developpement Admin">settings</mat-icon>
         </a>
-      </span>
+      </span> -->
+
+      <a routerLink="/emdev/layouts/contact" mat-button matTooltip="Contact" routerLinkActive="active-link" >
+        <mat-icon aria-hidden="false" aria-label="Emergence et developpement Admin">contact_support</mat-icon>
+      </a>
 
     <div class="auth_cart">
       <button mat-button [matMenuTriggerFor]="menu" matTooltip="Menu Authentification">
-        <mat-icon aria-hidden="false" aria-label="Emergence et developpemrnt profile">person</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Emergence et developpement profile">person</mat-icon>
       </button> 
       <mat-menu #menu="matMenu">
         <button mat-menu-item routerLink="/fastsmart/layouts/dashboard/profile" routerLinkActive="active-link" >
-          <mat-icon aria-hidden="false" aria-label="Profile Emergence et developpemrnt">perm_identity</mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Profile Emergence et developpement">perm_identity</mat-icon>
           Profile
         </button>
         <button mat-menu-item (click)="signOut()" routerLinkActive="active-link" >
-          <mat-icon aria-hidden="false" aria-label="Logout Emergence et developpemrnt">exit_to_app</mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Logout Emergence et developpement">exit_to_app</mat-icon>
           Déconnexion
         </button>
         <button mat-menu-item routerLink="/fastsmart/auth/login" routerLinkActive="active-link">
-          <mat-icon aria-hidden="false" aria-label="login Emergence et developpemrnt">portrait</mat-icon>
+          <mat-icon aria-hidden="false" aria-label="login Emergence et developpement">portrait</mat-icon>
           Login
         </button>
         <button mat-menu-item routerLink="/fastsmart/auth/register" routerLinkActive="active-link">
-          <mat-icon aria-hidden="false" aria-label="Register Emergence et developpemrnt">person_add</mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Register Emergence et developpement">person_add</mat-icon>
           Créez un compte
         </button>
       </mat-menu>
@@ -38,8 +54,8 @@
     <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
       <mat-icon>menu</mat-icon>
     </button>
-    <a routerLink="/fastsmart/layouts" mat-button matTooltip="Emergence et developpemrnt">
-      <img src="../assets/img/logo.png" alt="logo Emergence et developpemrnt">
+    <a routerLink="/emdev/layouts" mat-button matTooltip="Emergence et developpement">
+      <img src="../assets/img/logo.png" alt="logo Emergence et developpement">
     </a>
     <span class="menu-spacer"></span>
     <div fxShow="true" fxHide.lt-md>
@@ -48,14 +64,14 @@
         
     </div>
     <div class="toolbar-main-mobile">
-      <a mat-button matTooltip="Categories" class="toolbar-main-1">
-        <mat-icon aria-hidden="false" aria-label="Emergence et developpemrnt categories">apps</mat-icon>
-          Appelez-Nous
+      <a mat-button matTooltip="contact" class="toolbar-main-1" routerLink="/emdev/layouts/forms-paternaires" routerLinkActive="active"> 
+        <mat-icon aria-hidden="false" aria-label="Emergence et developpement contact">how_to_reg</mat-icon>
+        Formulaire Parternaires
       </a>
 
-      <a mat-button matTooltip="Contactez Nous ici" class="toolbar-main-2">
-        <mat-icon aria-hidden="false" aria-label="Emergence et developpemrnt contact">call</mat-icon>
-          +243 81 888 00 00
+      <a mat-button matTooltip="Contactez Nous ici" class="toolbar-main-2" routerLink="/emdev/layouts/forms-membres" routerLinkActive="active">
+        <mat-icon aria-hidden="false" aria-label="Emergence et developpement contact">person_add</mat-icon>
+          Formulaire Membres
       </a>
     </div>
   </mat-toolbar>
@@ -63,21 +79,25 @@
     <mat-sidenav-container fxFlexFill>
       <mat-sidenav #sidenav (click)="sidenav.close()">
         <mat-nav-list>
-          <a routerLink="/fastsmart/layouts/home" mat-list-item routerLinkActive="active-link">
-            <mat-icon aria-hidden="false" aria-label="Emergence et developpemrnt home">home</mat-icon>
-            Acceuil
+          <a routerLink="/emdev/layouts/forms-paternaires" mat-list-item routerLinkActive="active-link">
+            <mat-icon aria-hidden="false" aria-label="Emergence et developpement home">person_add</mat-icon>
+              Formulaire Parternaires 
           </a>
-          <a routerLink="/fastsmart/layouts/category" mat-list-item routerLinkActive="active-link">
-            <mat-icon aria-hidden="false" aria-label="Emergence et developpemrnt panier category">apps</mat-icon>
-            Categories
+          <a routerLink="/emdev/layouts/forms-membres" mat-list-item routerLinkActive="active-link">
+            <mat-icon aria-hidden="false" aria-label="Emergence et developpement panier category">apps</mat-icon>
+            Formulaire Membres
           </a>
-          <a routerLink="/fastsmart/layouts/contact" mat-list-item routerLinkActive="active-link">
-            <mat-icon aria-hidden="false" aria-label=" Emergence et developpemrnt contactez nous">send</mat-icon>
+          <a routerLink="/emdev/layouts/contact" mat-list-item routerLinkActive="active-link">
+            <mat-icon aria-hidden="false" aria-label=" Emergence et developpement contactez nous">send</mat-icon>
             Contact
+          </a>
+          <a routerLink="/emdev/layouts/about" mat-list-item routerLinkActive="active-link">
+            <mat-icon aria-hidden="false" aria-label=" Emergence et developpement contactez nous">info</mat-icon>
+            A Propos
           </a>
           <!-- <span *ngIf="authService.user$ | async as user">
             <a routerLink="/admin" mat-list-item matTooltip="Admin" routerLinkActive="active-link" *ngIf="user?.roles.admin === true">
-             <mat-icon aria-hidden="false" aria-label="Emergence et developpemrnt Admin">settings</mat-icon>
+             <mat-icon aria-hidden="false" aria-label="Emergence et developpement Admin">settings</mat-icon>
              Admin 
            </a>
          </span> -->

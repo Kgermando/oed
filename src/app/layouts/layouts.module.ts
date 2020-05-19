@@ -5,10 +5,14 @@ import { LayoutsRoutingModule } from './layouts-routing.module';
 import { LayoutsComponent } from './layouts.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
+import { FormsMembresComponent } from './forms-membres/forms-membres.component';
+import { FormsPartenairesComponent } from './forms-partenaires/forms-partenaires.component';
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
-  declarations: [LayoutsComponent, HomeComponent],
+  declarations: [LayoutsComponent, HomeComponent, FormsMembresComponent, FormsPartenairesComponent, ContactComponent, AboutComponent],
   imports: [
     CommonModule,
     LayoutsRoutingModule,

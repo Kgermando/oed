@@ -4,11 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   
-  { path: 'em&dev', loadChildren: () => import('../app/em-dev/em-dev.module').then(m => m.EmDevModule)},
+  { path: 'emdev', loadChildren: () => import('../app/em-dev/em-dev.module').then(m => m.EmDevModule)},
   // { path: 'admin', loadChildren: () => import('../app/admin/admin.module').then(m => m.AdminModule)},
 
-  { path: '', redirectTo: 'em&dev', pathMatch: 'full'},
-  { path: '**', redirectTo: 'em&dev', pathMatch: 'full'} 
+  { path: '', redirectTo: 'emdev', pathMatch: 'full'},
+  { path: '**', redirectTo: 'emdev'} 
 ];
 
 @NgModule({

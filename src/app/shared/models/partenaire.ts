@@ -23,4 +23,6 @@ export interface Paternaire {
 
     // Approuver votre inscription
     Approuve?: string;
+
+    Created?: any;
 }

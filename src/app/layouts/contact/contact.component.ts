@@ -1,0 +1,123 @@
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.scss']
+})
+export class ContactComponent implements OnInit {
+
+  contactFG: FormGroup;
+  // contact: Contact = {
+  //   id: '',
+  //   FullName: '',
+  //   Telephone: '',
+  //   Email: '',
+  //   Sujet: '',
+  //   Message: '',
+  //   Created: null,
+  //   Confirmation: ''
+  // }
+
+loading = false;
+errorMessage = 'Vérifiez les champs';
+
+  constructor(
+              private formBuilder: FormBuilder,
+              private router: Router,
+              private db: AngularFirestore,
+              // private contactService: ContactService,
+              // private spinnerService: SpinnerService
+              ) {
+      this.contactFG = this.formBuilder.group({
+        // id: ['', Validators.required],
+        FullName: ['', Validators.required],
+        Telephone: ['', Validators.required],
+        Email: ['', Validators.required],
+        Sujet: ['', Validators.required],
+        Message: ['', Validators.required]
+      })
+     }
+
+  ngOnInit(): void {}
+
+  // save() {
+  //   if (this.contactFG.valid) {
+  //     this.loading = true;
+  //     this.contact = this.contactFG.value;
+  //     this.contact.id = this.db.createId();
+  //     this.contact.Confirmation = "NON LU";
+  //     this.contact.Created = new Date();
+  //     this.contactService.add(this.contact).then(res => {
+  //       console.log(res)
+  //       this.loading = false;
+  //       this.router.navigateByUrl('/fastsmart/layouts/contact');
+  //       this.openSuccessBar()
+  //       this.contactFG.reset();
+  //     }).then((res => {
+  //       console.log(res);
+  //       console.log('Contact enregistrée !');
+  //     }));
+  //   } else {
+  //     this.markFormGroupTouched(this.contactFG);
+  //     this.openErrorBar(this.errorMessage)
+  //   }
+  // }
+
+  // openSuccessBar() {
+  //   this.spinnerService.openSnackBar({
+  //     data: { message: "Message envoyé avec succès" },
+  //     duration: 6,
+  //     panelClass: ["default-snackbar"],
+  //     horizontalPosition: "right",
+  //     verticalPosition: "top"
+  //   });
+  // }
+
+  // openErrorBar(errorMessage) {
+  //   this.spinnerService.openSnackBar({
+  //     data: { message: errorMessage },
+  //     duration: 2,
+  //     panelClass: ["default-snackbar"],
+  //     horizontalPosition: "right",
+  //     verticalPosition: "top"
+  //   });
+  // }
+
+
+  // FullNameValidate() {
+  //   const control = this.contactFG.get('FullName');
+  //   return !!(control && control.invalid && (control.dirty || control.touched));
+  // }
+
+  // MessageValidate() {
+  //   const control = this.contactFG.get('Message');
+  //   return !!(control && control.invalid && (control.dirty || control.touched));
+  // }
+
+  // TelephoneValidate() {
+  //   const control = this.contactFG.get('Telephone');
+  //   return !!(control && control.invalid && (control.dirty || control.touched));
+  // }
+
+  // SujetValidate() {
+  //   const control = this.contactFG.get('Sujet');
+  //   return !!(control && control.invalid && (control.dirty || control.touched));
+  // }
+  
+
+  // markFormGroupTouched(formGroup: FormGroup) {
+  //   // tslint:disable-next-line: no-angle-bracket-type-assertion
+  //   (<any> Object).values(formGroup.controls).forEach(control => {
+  //     if (control.controls) {
+  //       this.markFormGroupTouched(control);
+  //     } else {
+  //       control.markAsTouched();
+  //     }
+  //   });
+  // }
+
+}

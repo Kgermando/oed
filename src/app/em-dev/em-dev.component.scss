@@ -15,7 +15,7 @@
     right: 0;
     z-index: 2;
     height: 80px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
 
     .toolbar-main-mobile {
       color: white;
@@ -59,6 +59,10 @@
   .active-link{
     color: #18B52B;
   }
+
+  .active{
+    background-color: #18B52B;
+  }
   
   img {
     width: 70px; 
@@ -71,6 +75,33 @@
   }
   
   
+  @media screen and (max-width: 600px) {
+    .toolbar-main-mobile {
+      
+      // width: 150px;
+      .toolbar-main-1 {
+        display: none;
+        background-color: #2E4F9F;
+        height: 100%;
+      }
+
+      .toolbar-main-2 {
+        background-color: #FF0000;
+        height: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    .toolbar-main-3 {
+      display: none;
+    }
+
+    .pipe {
+      display: none;
+    }
+  }
+
   @media screen and (max-width: 400px) {
     img {
       width: 50px; 

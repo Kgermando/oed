@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { nationalite } from 'src/app/shared/db/nation';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-forms-membres',
+  templateUrl: './forms-membres.component.html',
+  styleUrls: ['./forms-membres.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class FormsMembresComponent implements OnInit {
 
   nation$ = nationalite;
   constructor() { }

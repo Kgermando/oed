@@ -1,60 +1,286 @@
-<section class="home">
-    <div class="hero-slider">
-        <div class="hero">
-            <div class="hero-text">
-                <h2 class="hero-text-title">
-                    Bienvenue sur la plateforme <br>
-                    <span>Emergence & Développement</span> 
-                </h2>
-                <p class="hero-text-content">
-                    <!-- La plateforme d'adhesion des nouveau membres et partenaires. -->
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-                </p>
-            </div>
-            <div class="hero-form">
-               <mat-card>
-                   <mat-horizontal-stepper  #stepper>
-                    <mat-step >
-                      <form >
-                        <ng-template matStepLabel>Fill out your name</ng-template>
-                        <mat-form-field>
-                          <mat-label>Name</mat-label>
-                          <input matInput placeholder="Last name, First name" >
-                        </mat-form-field>
-                        <div>
-                          <button mat-button matStepperNext>Next</button>
+<div class="home">
+  <section class="hero-slider">
+    <div class="hero">
+        <div class="hero-text">
+            <h2 class="hero-text-title">
+                Bienvenue sur la plateforme <br>
+                <span>Emergence & Développement</span> 
+            </h2>
+            <p class="hero-text-content">
+                Les membres fondateurs, réunis, ont convenu de créer une organisation apolitique 
+                pour mettre en œuvre un certain nombre de projets afin de faire face à plusieurs problèmes notamment : 
+                la  pauvreté qui sévit la majorité de la population et tant d'autres...
+                <br>
+                
+                Pour l’émergence et le développement de la RDC et de tant d’autres pays qui, actuellement, éprouvent les mêmes
+                problèmes que la RDC.
+            </p>
+            <button class="btn-hero-1" routerLink="/emdev/layouts/about" mat-raised-button matTooltip="Plus d'infos">EN SAVOIR PLUS</button>
+
+            <!-- <button class="btn-hero-2" mat-raised-button matTooltip="Plus d'infos">ACCEDER A LA FICHE D'ADHESION</button> -->
+        </div>
+        <div class="hero-form">
+          <mat-card>
+            <mat-tab-group>
+              <mat-tab label="Formulaire d’adhesion du membre"> 
+            
+                <mat-horizontal-stepper  #stepper>
+                  <mat-step >
+                    <form >
+                      <ng-template matStepLabel>IDENTITE</ng-template>
+                      <div class="mat-form-1">
+                        <div class="mat-form-1-1">
+                          <mat-form-field>
+                            <mat-label>Nom Complet</mat-label>
+                            <input matInput type="text" placeholder="Nom, Post-Nom, Prénom" required>
+                          </mat-form-field>
+                          <mat-form-field>
+                            <mat-label>Sexe</mat-label>
+                            <mat-select required>
+                              <mat-option value="Femme">Femme</mat-option>
+                              <mat-option value="Homme">Homme</mat-option>
+                            </mat-select>
+                          </mat-form-field>
                         </div>
-                      </form>
-                    </mat-step>
-                    <mat-step >
-                      <form >
-                        <ng-template matStepLabel>Fill out your address</ng-template>
-                        <mat-form-field>
-                          <mat-label>Address</mat-label>
-                          <input matInput  placeholder="Ex. 1 Main St, New York, NY"
-                                 required>
-                        </mat-form-field>
-                        <div>
-                          <button mat-button matStepperPrevious>Back</button>
-                          <button mat-button matStepperNext>Next</button>
+                        <div class="mat-form-1-1">
+                          <mat-form-field>
+                            <mat-label>Date de naissance</mat-label>
+                            <input matInput [matDatepicker]="picker" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                          </mat-form-field>
+                          <mat-form-field>
+                            <mat-label>Lieu de naissance</mat-label>
+                            <input matInput type="text" placeholder="Lien de naissance" required>
+                          </mat-form-field>
                         </div>
-                      </form>
-                    </mat-step>
-                    <mat-step>
-                      <ng-template matStepLabel>Done</ng-template>
-                      <p>You are now done.</p>
+                        <div class="mat-form-1-1">
+                          <mat-form-field>
+                            <mat-label>Etat Civil</mat-label>
+                            <mat-select required>
+                              <mat-option value="Célibataire">Célibataire</mat-option>
+                              <mat-option value="Marié">Marié</mat-option>
+                              <mat-option value="Veuve">Veuve</mat-option>
+                              <mat-option value="veuf">veuf</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <mat-form-field>
+                            <mat-label>Nombre Enfants</mat-label>
+                            <input matInput type="number" placeholder="Nombre des Enfants" required>
+                          </mat-form-field>
+                        </div>
+                        <div>
+                          <mat-form-field>
+                            <mat-label>Fils/Fille de Père</mat-label>
+                            <input matInput placeholder="Nom de parent..." required>
+                          </mat-form-field>
+                          <mat-form-field>
+                            <mat-label>Fils/Fille de Mère</mat-label>
+                            <input matInput placeholder="Nom de parent..." required>
+                          </mat-form-field>
+                        </div>
+                        
+                      </div>
+                      <div class="mat-form-2">
+                        
+                        <mat-form-field>
+                          <mat-label>Nationalité</mat-label>
+                          <mat-select required>
+                            <mat-option value="{{ nation }}" *ngFor="let nation of nation$" >{{ nation }}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-label>Adresse physique</mat-label>
+                          <textarea matInput required></textarea>
+                        </mat-form-field>
+                      </div>
+                      
+                      <div>
+                        <button mat-button matStepperNext 
+                          style="background-color: #18B52B; color: white; width: 100%;" >Suivant</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step >
+                    <form >
+                      <ng-template matStepLabel>ETUDES FAITES</ng-template>
+                      <mat-form-field>
+                        <mat-label>Address</mat-label>
+                        <input matInput  placeholder="Ex. 1 Main St, New York, NY"
+                                required>
+                      </mat-form-field>
                       <div>
                         <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button (click)="stepper.reset()">Reset</button>
+                        <button mat-button matStepperNext>Next</button>
+                      </div> 
+                    </form>
+                  </mat-step>
+                  <mat-step>
+                    <ng-template matStepLabel>Done</ng-template>
+                    <p>You are now done.</p>
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button (click)="stepper.reset()">Reset</button>
+                    </div>
+                  </mat-step>
+                </mat-horizontal-stepper>
+  
+                
+              </mat-tab>
+              <mat-tab label="Formulaire d’adhesion du partenaire"> 
+
+      
+                  <mat-horizontal-stepper  #stepper>
+                  <mat-step >
+                    <form >
+                      <ng-template matStepLabel>Fill out your name</ng-template>
+                      <mat-form-field>
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Last name, First name" >
+                      </mat-form-field>
+                      <div>
+                        <button mat-button matStepperNext>Next</button>
                       </div>
-                    </mat-step>
-                  </mat-horizontal-stepper>
-               </mat-card>
-                  
-                  
-            </div>
+                    </form>
+                  </mat-step>
+                  <mat-step >
+                    <form >
+                      <ng-template matStepLabel>Fill out your address</ng-template>
+                      <mat-form-field>
+                        <mat-label>Address</mat-label>
+                        <input matInput  placeholder="Ex. 1 Main St, New York, NY"
+                                required>
+                      </mat-form-field>
+                      <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step>
+                    <ng-template matStepLabel>Done</ng-template>
+                    <p>You are now done.</p>
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button (click)="stepper.reset()">Reset</button>
+                    </div>
+                  </mat-step>
+                </mat-horizontal-stepper>
+
+              </mat-tab>
+            </mat-tab-group>
+          </mat-card>
+            
+              
+              
         </div>
     </div>
-</section>
+  </section>
+
+  <section class="vision">
+    <h2 class="vision-title">Notre vision?</h2>
+
+    <div class="vision-content">
+
+      <div class="icon-box-item">
+        <div class="ib-icon">
+          <mat-icon aria-hidden="false" aria-label=" Emergence et developpemrnt contactez nous">redeem</mat-icon>
+        </div>
+        <div class="ib-text">
+          <h5>Innovation!</h5>
+          <p>
+            Développer, conforter, partager et promouvoir le savoir, 
+            la recherche, l’innovation et la technologie. 
+          </p>
+        </div>
+      </div>
+
+      <div class="icon-box-item">
+        <div class="ib-icon">
+          <mat-icon aria-hidden="false" aria-label=" Emergence et developpemrnt contactez nous">verified_user</mat-icon>
+        </div>
+        <div class="ib-text">
+          <h5>Economie!</h5>
+          <p>
+            Promouvoir la création et le développement des activités économiques. 
+          </p>
+        </div>
+      </div>
+
+      <div class="icon-box-item">
+        <div class="ib-icon">
+          <mat-icon aria-hidden="false" aria-label=" Emergence et developpemrnt contactez nous">add_to_queue</mat-icon>
+        </div>
+        <div class="ib-text">
+          <h5>Valeurs!</h5>
+          <p>
+            Lutter contre les antivaleurs : la corruption, l’exclusion, 
+            le tribalisme, les guerres, les inégalités sociales et de sexe, etc. 
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="btn-vision" routerLink="/emdev/layouts/about" mat-raised-button>
+      Plus
+    </button>
+    
+  </section>
+
+  <section class="cta-section"> 
+		<div class="container">
+			<h2>Avez-vous déjà rempli le formulaire  des <strong>membres</strong>?</h2>
+			<h5>Si vous ne l'avez pas encore fait, c'est le bon moment cliquez sur le boutton ci-dessous.</h5>
+      <!-- <a href="#" class="site-btn sb-dark sb-big">Find out More</a> -->
+      <button class="btn-cta-section" routerLink="/emdev/layouts/forms-membres" mat-raised-button matTooltip="Remplir le formulaire de membres">
+        REMPLIR LE FORMULAIRE
+      </button>
+		</div>
+  </section>
+  
+ <!-- <section class="card-home">
+
+    <div class="card-home-1">
+      <div class="card-home-img">
+        <img src="../../../assets/img/feature-1.jpg" alt="">
+      </div>
+      <div class="card-home-text">
+        <div class="card-home-header">
+          Get a personal loan from just 8.5% APR
+        </div>
+        <div class="card-home-content">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt 
+          ut labore et dolore mag na aliqua. Class aptent taciti sociosqu ad litora torquent per conubia 
+          nostra, per inceptos himenaeos. Suspendisse potenti. 
+          Ut gravida mattis magna, non varius lorem sodales nec. In libero orci, ornare non nisl.
+        </div>
+        <div class="card-home-url">
+          Apply for a loan now 
+        </div>
+      </div>
+    </div>
+
+    <div class="card-home-2">
+      <div class="card-home-img">
+        <img src="../../../assets/img/feature-2.jpg" alt="">
+      </div>
+      <div class="card-home-text">
+        <div class="card-home-header">
+          Get a personal loan from just 8.5% APR
+        </div>
+        <div class="card-home-content">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt 
+          ut labore et dolore mag na aliqua. Class aptent taciti sociosqu ad litora torquent per conubia 
+          nostra, per inceptos himenaeos. Suspendisse potenti. 
+          Ut gravida mattis magna, non varius lorem sodales nec. In libero orci, ornare non nisl.
+        </div>
+        <div class="card-home-url">
+          Apply for a loan now 
+        </div>
+      </div>
+    </div>
+
+  </section> 
+   -->
+</div>
