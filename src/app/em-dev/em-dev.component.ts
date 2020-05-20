@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth/services/auth/auth.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/internal/operators/map';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-em-dev',
@@ -7,11 +12,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmDevComponent implements OnInit {
 
-  constructor() { }
+  loggedIn$: Observable<boolean>;
+  loggedOut$: Observable<boolean>;
 
-  ngOnInit(): void {
+  constructor(private afAuth: AngularFireAuth,
+              public authService: AuthService,
+              private router: Router,
+              ) { }
+
+  async ngOnInit() {
+    
+    this.loggedIn$ = this.afAuth.authState.pipe(
+      map(user => !!user)
+    );
+    this.loggedOut$ = this.loggedIn$.pipe(
+      map(loggedIn => !loggedIn)
+    );
+
   }
 
-  signOut() {}
+  async signOut() {
+    await this.afAuth.signOut()
+    await localStorage.clear();
+    await this.router.navigateByUrl("/emdev/auth")
+  }
 
 }

@@ -1,0 +1,43 @@
+
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px" class="mt-164">
+ 
+    <mat-card class="p-40" [class.mat-elevation-z10]="true">
+        <div fxLayout="row" fxLayoutAlign="end end">
+            <div  class='font-size-20'>ID:</div>
+            <div  class='font-size-80'>{{ user.uid }}</div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start start">
+            
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div class='font-size-20'>Nom:</div>
+                <div class='font-size-80'>{{ user.name }}</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div class='font-size-20'>Numéro:</div>
+                <div class='font-size-80'>{{ user.phone }}</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div class='font-size-20'>Mail de:</div>
+                <div class='font-size-80' >{{ user.email }}</div>
+            </div>
+
+            <br>
+
+            <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
+                <div class='font-size-20'>Permissions:</div>
+                <div class='font-size-80' class="objet">Admin: {{ user.roles.admin }}</div>
+                <div class='font-size-80' class="objet">Manager: {{ user.roles.manager }}</div>
+                <div class='font-size-80' class="objet">USer: {{ user.roles.user }}</div>
+            </div>
+
+            <br>
+            <div fxLayout="column" fxLayoutAlign="start start">
+                <div class='font-size-20'>Adresse:</div>
+                <div class='message maxh-80'>{{ user.adress }}</div>
+            </div>
+        </div>
+
+    </mat-card>
+</div>

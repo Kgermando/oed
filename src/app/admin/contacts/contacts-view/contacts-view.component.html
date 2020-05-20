@@ -1,0 +1,62 @@
+<mat-card fxLayout="column" fxLayoutAlign="end end">
+    <mat-card-content fxLayout="row" fxLayoutAlign="end end">
+        <form [formGroup]="contactFG">
+             <mat-form-field appearance="outline">
+                 <mat-label>Confirmation de lecture</mat-label>
+                 <mat-select formControlName="Confirmation">
+                   <mat-option value="LU" >Lu</mat-option>
+                   <mat-option value="NON LU" >Non Lu</mat-option>
+                 </mat-select>
+             </mat-form-field>
+             <button type="submit" mat-raised-button color="primary" (click)="update()" class="w-180">
+                 OK
+             </button>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px" class="mt-164">
+ 
+    <mat-card class="p-40" [class.mat-elevation-z10]="true">
+        <div fxLayout="row" fxLayoutAlign="end end">
+            <div  class='font-size-20'>Envoyé le:</div>
+            <div  class='font-size-80'>{{ contactView.Created| date: 'dd/MM/yyyy à HH:mm:ss' }}</div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start start">
+            
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div class='font-size-20'>Nom:</div>
+                <div class='font-size-80'>{{ contactView.FullName }}</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div class='font-size-20'>Numéro:</div>
+                <div class='font-size-80'>{{ contactView.Telephone }}</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div class='font-size-20'>Mail de:</div>
+                <div class='font-size-80' >{{ contactView.Email }}</div>
+            </div>
+
+            <br>
+
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
+                <div class='font-size-20'>Objet:</div>
+                <div class='font-size-80' class="objet">{{ contactView.Sujet }}</div>
+            </div>
+
+            <br>
+            <div fxLayout="column" fxLayoutAlign="start start">
+                <div class='font-size-20'>Message:</div>
+                <div class='message maxh-80'>{{ contactView.Message }}</div>
+            </div>
+        </div>
+
+        <hr>
+
+        <button mat-raised-button color="primary" name="loginBtn" routerLink="admin/contacts/contact-ecrire">
+            <span fxLayout="row" fxLayoutAlign="space-evenly stretch center">Répondre</span>
+        </button>
+    </mat-card>
+</div>

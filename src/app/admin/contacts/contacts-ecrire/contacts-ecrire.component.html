@@ -1,0 +1,45 @@
+<form [formGroup]="contactFG">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px" class="mt-164">
+        <div class="font-size-36 mb-48">Ecrire Un mail</div>
+        <mat-card class="p-40" [class.mat-elevation-z10]="true">
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Nom Complet</mat-label>
+                <input type="text" matInput placeholder="Germain Kataku" formControlName="FullName"/>
+            </mat-form-field>
+            </div>
+            <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Telephone</mat-label>
+                <input type="text" matInput placeholder="Numéro de Telephone" formControlName="Telephone"/>
+            </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput placeholder="Adresse Email" formControlName="Email"/>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Objet</mat-label>
+                    <input type="text" matInput placeholder="l'Objet de votre contact" formControlName="Sujet"/>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Message</mat-label>
+                    <textarea matInput placeholder="Ecrivez Votre Message ici..." formControlName="Message"></textarea>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <button type="submit" mat-raised-button color="primary" (click)="save()" class="w-180">
+                    Envoyer
+                </button>
+            </div>
+        </div>
+        </mat-card>
+    </div>
+</form>

@@ -4,6 +4,7 @@
 		font-family: "Google Sans", Roboto, sans-serif;
 		font-size: 1rem;
 		text-align: center !important;
+		line-height: 1.1;
 
 		.hero-slider {
 			background-image: url("../../../assets/img/hero-slider/1.jpg");
@@ -12,6 +13,7 @@
 			// position: relative;
 			height: 700px;
 			//   margin-bottom: 20px;
+			line-height: 1.1;
 			
 			
 			.hero {
@@ -116,6 +118,7 @@
 			margin-right: 2rem;
 			margin-left: 2rem;
 			margin-bottom: 1rem;
+			line-height: 1.1;
 			
 			.vision-title {
 				text-align: center;
@@ -245,86 +248,87 @@
 		font-family: "Google Sans", Roboto, sans-serif;
 		// font-size: 1rem;
 		// text-align: center !important;
+		line-height: 1.1;
 
 		.hero-slider {
-		color: rgb(255, 255, 255);
-		background-image: url("../../../assets/img/hero-slider/1.jpg");
-		background-repeat: no-repeat;
-		background-position: left;
-		height: 700px;
+			color: rgb(255, 255, 255);
+			background-image: url("../../../assets/img/hero-slider/1.jpg");
+			background-repeat: no-repeat;
+			background-position: left;
+			height: 700px;
 
-		.hero {
-			display: flex;
-			flex-direction: row;
-			// align-self: center;
-			// position: relative;
-
-			.hero-text {
-			flex: 50%;
-			align-self: flex-start;
-			// padding-top: 4rem;
-			// padding-left: 1.75rem;
-			padding-top: 95px;
-			padding-right: 10px;
-			padding-left: 50px;
-
-			.hero-text-title {
-				font-size: 50px;
-				color: #fff;
-				margin-bottom: 30px;
-				line-height: 1.1;
-			}
-
-			.hero-text-content {
-				font-weight: 400;
-				// font-size: 1.25rem;
-				padding-bottom: 60px;
-			}
-
-				.btn-hero-1 {
-					padding: 5px;
-					width: 200px;
-					color: #fff;
-					background-color: #ff0000;
-					border-radius: 25px;
-				}
-				.btn-hero-1:hover {
-					padding: 10px;
-					width: 200px;
-					color: #fff;
-					background-color: #18B52B;
-					border-radius: 25px;
-				}
-
-				.btn-hero-2 {
-					display: none;
-				}
-
-			}
-
-			.hero-form {
-			flex: 50%;
-			padding-top: 30px;
-			padding-right: 20px;
-
-			form {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-			}
-
-			.mat-form-1 {
-				display: flex;
-				flex-direction: column;
-				// width: 400px;
-
-				.mat-form-1-1 {
+			.hero {
 				display: flex;
 				flex-direction: row;
+				// align-self: center;
+				// position: relative;
+
+				.hero-text {
+				flex: 50%;
+				align-self: flex-start;
+				// padding-top: 4rem;
+				// padding-left: 1.75rem;
+				padding-top: 95px;
+				padding-right: 10px;
+				padding-left: 50px;
+
+				.hero-text-title {
+					font-size: 50px;
+					color: #fff;
+					margin-bottom: 30px;
+					line-height: 1.1;
+				}
+
+				.hero-text-content {
+					font-weight: 400;
+					// font-size: 1.25rem;
+					padding-bottom: 60px;
+				}
+
+					.btn-hero-1 {
+						padding: 5px;
+						width: 200px;
+						color: #fff;
+						background-color: #ff0000;
+						border-radius: 25px;
+					}
+					.btn-hero-1:hover {
+						padding: 10px;
+						width: 200px;
+						color: #fff;
+						background-color: #18B52B;
+						border-radius: 25px;
+					}
+
+					.btn-hero-2 {
+						display: none;
+					}
+
+				}
+
+				.hero-form {
+				flex: 50%;
+				padding-top: 30px;
+				padding-right: 20px;
+
+				form {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+				}
+
+				.mat-form-1 {
+					display: flex;
+					flex-direction: column;
+					// width: 400px;
+
+					.mat-form-1-1 {
+					display: flex;
+					flex-direction: row;
+					}
+				}
 				}
 			}
-			}
-		}
 		}
 
 		mat-form-field {
@@ -342,6 +346,7 @@
 			margin-top: 65px;
 			margin-right: 2rem;
 			margin-left: 2rem;
+			line-height: 1.1;
 			
 			.vision-title {
 			text-align: center;
@@ -422,6 +427,7 @@
 			background-image: url("../../../assets/img/score-bg.jpg");
 			text-align: center;
 			padding: 100px 0 78px;
+			line-height: 1.1;
 			
 			h2 {
 				font-size: 48px;
@@ -458,20 +464,16 @@
 		}
 	
 		.card-home {
-			display: flex;
-			flex-direction: column;
-			margin: 65px 25px;
+			// display: flex;
+			// flex-direction: column;
+			// margin: 65px 25px;
 	
-			.card-home-1 {
+			mat-card {
 				display: flex;
-				flex-direction: row;
-				// height: 200px;
-			}
-	
-			.card-home-2 {
-				display: flex;
-				flex-direction: row;
-				// height: 200px;
+				// .card-img {
+				// 	// width: 200px;
+				// 	// height: 200px;
+				// }
 			}
 	
 		}

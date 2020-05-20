@@ -1,0 +1,43 @@
+<section>
+  
+  <div fxLayout="column" fxLayoutAlign="space-between center center">
+    <div fxLayout="column" fxLayoutAlign="space-evenly center center" class="container">
+      <mat-card>
+          <mat-card-header>
+            <div fxLayout="column" fxLayoutAlign="center center">
+              <!-- <img src="/assets/img/fastsmart.png" class="logo" routerLink="/layouts" /> -->
+              <h2>
+                Login
+              </h2>
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+            <div>
+              <form fxLayout="column" fxLayoutAlign="space-evenly stretch center " fxLayoutGap="20px">
+                <mat-form-field appearance="outline" color="warn">
+                  <mat-label class="placeholder">Email</mat-label>
+                  <input matInput name="email" type="text" placeholder="" [(ngModel)]="_loginRequest.email">
+                  <mat-icon matSuffix>account_circle</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn">
+                  <mat-label class="placeholder"> Password</mat-label>
+                  <input matInput name="password" type="password" placeholder="Password" [(ngModel)]="_loginRequest.password">
+                  <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
+                <button mat-raised-button color="accent" (click)="login()" name="loginBtn">
+                  <div *ngIf="isLoading" fxLayout="column" fxLayoutAlign="center center" class="padded">
+                    <mat-spinner [diameter]="30" color="primary"></mat-spinner>
+                  </div>
+                  <span fxLayout="row" fxLayoutAlign="space-evenly stretch center" *ngIf="!isLoading">Login</span>
+                </button>
+                <button mat-raised-button color="warn" routerLink="/emdev/layouts/contact" name="registerBtn">Demandez un accès.</button>
+              </form>
+            </div>
+          </mat-card-content>
+      </mat-card>
+      
+      <div>
+      </div>
+    </div>
+  </div>
+</section>

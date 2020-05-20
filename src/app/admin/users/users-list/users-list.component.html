@@ -1,0 +1,52 @@
+<!-- <div *ngFor="let user of (users$|async)" class="user-item">
+
+  {{ user.name }}
+
+  {{ user.email }}
+
+  {{ user.phone }}
+
+  {{ user.adress }}
+
+  {{ user.roles }}
+
+</div> -->
+
+  
+  <div fxLayout="column" class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <!-- Position Column -->
+      <ng-container matColumnDef="name" sticky>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Utilisateurs </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+            <a [routerLink]="[ '/admin/users/user-view', element.uid ]"> {{ element.name }}</a> 
+        </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.email }}</mat-cell>
+      </ng-container>
+
+       <!-- Name Column -->
+       <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef> TéléPhone </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.phone }} </mat-cell>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="roles">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Permissions </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.roles }} </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+  

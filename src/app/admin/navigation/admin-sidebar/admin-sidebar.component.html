@@ -1,0 +1,61 @@
+<mat-nav-list>
+    <div class="profile-card" *ngIf="authService.user$ | async as user">
+        <div class="header" >
+            <h2>{{ user?.name }}</h2>
+            <h4>{{ user?.email }}</h4>
+            <!-- <h5>{{ user?.roles.admin }}</h5> -->
+        </div>
+        <img src="{{ user?.photoURL}}" alt="Photo de {{user?.name}} ">
+    </div>
+ 
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Statistiques</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/stats" routerLinkActive="active-link">
+        <mat-icon>bar_chart</mat-icon>
+        Dashboard
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <!-- <h2 matSubheader>Produits</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/products/product-add" routerLinkActive="active-link">
+        <mat-icon>add_shopping_cart</mat-icon>
+        Nouveau Produit
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="//admin/products/product-list" routerLinkActive="active-link">
+        <mat-icon>shopping_cart</mat-icon>
+        Tous les Produits
+    </a> -->
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Contacts</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/contacts/contact-ecrire" routerLinkActive="active-link">
+        <mat-icon>mail_outline</mat-icon>
+        Ecrire un Nouveau Mail
+    </a>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/contacts/contacts-recu" routerLinkActive="active-link">
+        <mat-icon>mail</mat-icon>
+        Contacts
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Utilisateurs</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/users/user-add" routerLinkActive="active-link">
+        <mat-icon>person_add</mat-icon>
+        Nouveau User
+    </a>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/users/users-list" routerLinkActive="active-link">
+        <mat-icon>people_outline</mat-icon>
+        Tous les users
+    </a>
+
+</mat-nav-list>

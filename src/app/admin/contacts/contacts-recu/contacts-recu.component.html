@@ -1,0 +1,139 @@
+<div class="example-button-row m-40" fxLayout="row" fxLayoutAlign="end end">
+    <button mat-raised-button color="warn" class="w-250 h-58 fontSize-B" (click)="addProductClick()" >
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <button mat-raised-button color="warn" class="w-250 h-58 fontSize-B" (click)="exportAsXLSX()" >
+      <mat-icon>local_printshop</mat-icon>
+    </button>
+  </div>
+
+  <br>
+
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">email</mat-icon>
+        MESSAGE NON LU
+      </ng-template>
+
+      <br>
+      
+      <div fxLayout="column" class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource" matSort>
+          <!-- Position Column -->
+          <ng-container matColumnDef="FullName" sticky>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
+            <mat-cell *matCellDef="let element"> 
+                <a [routerLink]="[ '/admin/contacts/contact-view', element.id ]"> {{ element.FullName }}</a> 
+            </mat-cell>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="Telephone">
+            <mat-header-cell *matHeaderCellDef> Numéro </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.Telephone }} $</mat-cell>
+          </ng-container>
+    
+           <!-- Name Column -->
+           <ng-container matColumnDef="Email">
+            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.Email }} </mat-cell>
+          </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="Sujet">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Objet </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{ element.Sujet }} </mat-cell>
+              </ng-container>
+      
+          <!-- Weight Column -->
+          <ng-container matColumnDef="Created">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.Created.toDate()| date: 'dd/MM/yyyy HH:mm:ss' }} </mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="remove" >
+            <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="cursor-pointer">
+                <a (click)="removeProduct(element.id)">
+                    <mat-icon>delete_sweep</mat-icon>
+                </a> 
+            </mat-cell>
+          </ng-container>
+      
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons></mat-paginator>
+      </div>
+
+    </mat-tab>
+  
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">mail_outline</mat-icon>
+        MESSAGE LU
+      </ng-template>
+      <br>
+      
+      <div fxLayout="column" class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource" matSort>
+          <!-- Position Column -->
+          <ng-container matColumnDef="FullName" sticky>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
+            <mat-cell *matCellDef="let element"> 
+                <a [routerLink]="[ '/admin/contacts/contact-view', element.id ]"> {{ element.FullName }}</a> 
+            </mat-cell>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="Telephone">
+            <mat-header-cell *matHeaderCellDef> Numéro </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.Telephone }} $</mat-cell>
+          </ng-container>
+    
+           <!-- Name Column -->
+           <ng-container matColumnDef="Email">
+            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.Email }} </mat-cell>
+          </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="Sujet">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Objet </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{ element.Sujet }} </mat-cell>
+              </ng-container>
+      
+          <!-- Weight Column -->
+          <ng-container matColumnDef="Created">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.Created.toDate()| date: 'dd/MM/yyyy HH:mm:ss' }} </mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="remove" >
+            <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="cursor-pointer">
+                <a (click)="removeProduct(element.id)">
+                    <mat-icon>delete_sweep</mat-icon>
+                </a> 
+            </mat-cell>
+          </ng-container>
+      
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+    </mat-tab>
+  
+  </mat-tab-group>
+  
+  
+  
+  

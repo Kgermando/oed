@@ -10,16 +10,16 @@
     
     <a mat-button matTooltip="Contactez Nous ici" class="toolbar-main-3">
       <mat-icon aria-hidden="false" aria-label="Emergence et developpement contact">email</mat-icon>
-      jacquestshisumpa2013@gmail.com
+      contact@emergenceetdeveloppement.org
     </a>
     
     <span class="menu-spacer"></span>
 
-      <!-- <span>
-        <a routerLink="/admin" mat-button matTooltip="Admin" routerLinkActive="active-link" >
-          <mat-icon aria-hidden="false" aria-label="Emergence et developpement Admin">settings</mat-icon>
+      <span *ngIf="authService.user$ | async as user">
+        <a routerLink="/admin" mat-button matTooltip="Admin" routerLinkActive="active-link" *ngIf="user?.roles.admin === true">
+          <mat-icon aria-hidden="false" aria-label="Fast Smart Admin">settings</mat-icon>
         </a>
-      </span> -->
+      </span>
 
       <a routerLink="/emdev/layouts/contact" mat-button matTooltip="Contact" routerLinkActive="active-link" >
         <mat-icon aria-hidden="false" aria-label="Emergence et developpement Admin">contact_support</mat-icon>
@@ -30,22 +30,22 @@
         <mat-icon aria-hidden="false" aria-label="Emergence et developpement profile">person</mat-icon>
       </button> 
       <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/fastsmart/layouts/dashboard/profile" routerLinkActive="active-link" >
+        <button mat-menu-item routerLink="/emdev/auth/dashboard" routerLinkActive="active-link" *ngIf="loggedIn$ | async">
           <mat-icon aria-hidden="false" aria-label="Profile Emergence et developpement">perm_identity</mat-icon>
-          Profile
+          Tableau de bord
         </button>
-        <button mat-menu-item (click)="signOut()" routerLinkActive="active-link" >
+        <button mat-menu-item (click)="signOut()" routerLinkActive="active-link" *ngIf="loggedIn$ | async">
           <mat-icon aria-hidden="false" aria-label="Logout Emergence et developpement">exit_to_app</mat-icon>
           Déconnexion
         </button>
-        <button mat-menu-item routerLink="/fastsmart/auth/login" routerLinkActive="active-link">
+        <button mat-menu-item routerLink="/emdev/auth/login" routerLinkActive="active-link" *ngIf="loggedOut$ | async">
           <mat-icon aria-hidden="false" aria-label="login Emergence et developpement">portrait</mat-icon>
           Login
         </button>
-        <button mat-menu-item routerLink="/fastsmart/auth/register" routerLinkActive="active-link">
+        <!-- <button mat-menu-item routerLink="/fastsmart/auth/register" routerLinkActive="active-link">
           <mat-icon aria-hidden="false" aria-label="Register Emergence et developpement">person_add</mat-icon>
           Créez un compte
-        </button>
+        </button> -->
       </mat-menu>
     </div>
   </mat-toolbar>
