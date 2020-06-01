@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { switchMap, first } from 'rxjs/operators';
-import { QueryService } from 'src/app/shared/services/data/query.service';
-import { User } from '../models/user';
-import { Entities } from '../models/permissions.model';
-// import { Roles, Entities } from '../models/fsEnum';
 
+import { Person } from '../models/user';
+import { Roles, Entities } from '../models/enum';
+import { QueryService } from '../auth/query.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,37 +12,24 @@ import { Entities } from '../models/permissions.model';
 export class SecurityService {
 	constructor(private query: QueryService) {}
 
-	private checkAuthorization(user: User, allowedRoles: string[]): boolean {
-		if (!user) {
-		  console.log('no user');
-		  return false;
-		}
-		for (const role of allowedRoles) {
-		  if (user.roles[role]) {
-			console.log('authorized');
+	checkAuthorization(user: Person, isRoleValid: string): boolean {
+		if (!user) return false;
+		else if (user.role == isRoleValid) {
 			return true;
-		  }
 		}
-		console.log('NOT authorized');
+
 		return false;
-	  }
+	}
  
-
-	matchAdmin(user: User): boolean {
-		const allowed = ['admin'];
-		return this.checkAuthorization(user, allowed);
+	matchAdmin(user: Person): boolean {
+		return this.checkAuthorization(user, Roles.Admin);
 	}
-
-	matchManager(user: User): boolean {
-		const allowed = ['manager', 'user'];
-		return this.checkAuthorization(user, allowed);
+	matchManager(user: Person): boolean {
+		return this.checkAuthorization(user, Roles.Manager);
 	}
-	
-	matchUser(user: User): boolean {
-		const allowed = ['user'];
-		return this.checkAuthorization(user, allowed);
+	matchUser(user: Person): boolean {
+		return this.checkAuthorization(user, Roles.User);
 	}
-	
 
 	
 	isAdmin(): Observable<boolean> {
@@ -105,20 +91,21 @@ export class SecurityService {
 		});
 	}
 
-	// getRole():Observable<any>{
-	// 	return new Observable(obs => {
-	// 		this.query
-	// 			.getLoggedInUserID()
-	// 			.pipe(
-	// 				switchMap((res) => {
-	// 					return this.query.getSingleData(Entities.Person, res);
-	// 				})
-	// 			)
-	// 			.pipe(first())
-	// 			.subscribe((res2) => { 
-	// 				obs.next(res2.roles);}),
-	// 			(err) => obs.error(err),
-	// 			() => obs.complete();
-	// 	})
-	// }
+	getRole():Observable<any>{
+		return new Observable(obs=>{
+			this.query
+				.getLoggedInUserID()
+				.pipe(
+					switchMap((res) => {
+						return this.query.getSingleData(Entities.Person, res);
+					})
+				)
+				.pipe(first())
+				.subscribe((res2) => {
+					obs.next(res2.role);
+				}),
+				(err) => obs.error(err),
+				() => obs.complete();
+		})
+	}
 }

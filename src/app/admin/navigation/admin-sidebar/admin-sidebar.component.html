@@ -5,9 +5,9 @@
             <h4>{{ user?.email }}</h4>
             <!-- <h5>{{ user?.roles.admin }}</h5> -->
         </div>
-        <img src="{{ user?.photoURL}}" alt="Photo de {{user?.name}} ">
+        <img [src]="user?.photoURL" alt="Photo de {{user?.name}} ">
     </div>
- 
+
     <mat-divider></mat-divider>
 
     <h2 matSubheader>Statistiques</h2>
@@ -16,19 +16,6 @@
         <mat-icon>bar_chart</mat-icon>
         Dashboard
     </a>
-
-    <mat-divider></mat-divider>
-
-    <!-- <h2 matSubheader>Produits</h2>
-
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/products/product-add" routerLinkActive="active-link">
-        <mat-icon>add_shopping_cart</mat-icon>
-        Nouveau Produit
-    </a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="//admin/products/product-list" routerLinkActive="active-link">
-        <mat-icon>shopping_cart</mat-icon>
-        Tous les Produits
-    </a> -->
 
     <mat-divider></mat-divider>
 
@@ -42,6 +29,63 @@
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/contacts/contacts-recu" routerLinkActive="active-link">
         <mat-icon>mail</mat-icon>
         Contacts
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Membres</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/forms/membres/membres-add" routerLinkActive="active-link">
+        <mat-icon>person_add</mat-icon>
+        Nouveau Membre
+    </a>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/forms/membres/membres-list" routerLinkActive="active-link">
+        <mat-icon>list</mat-icon>
+        Liste des membres
+    </a>
+
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Persone Morale</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/forms/pers-morale/pers-morale-add" routerLinkActive="active-link">
+        <mat-icon>account_balance</mat-icon>
+        Nouvelle Personne Morale
+    </a>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/forms/pers-morale/pers-morale-list" routerLinkActive="active-link">
+        <mat-icon>list</mat-icon>
+        Liste des personnes morale
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Activités</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/activity/activity-add" routerLinkActive="active-link">
+        <mat-icon>pending_actions</mat-icon>
+        Ajouter une Activité
+    </a>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/activity/activity-list" routerLinkActive="active-link">
+        <mat-icon>list</mat-icon>
+        Liste des Activités
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Opportunités</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/opportunity/opportunity-add" routerLinkActive="active-link">
+        <mat-icon>addchart</mat-icon>
+        Ajouter une Opportunité
+    </a>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/opportunity/opportunity-list" routerLinkActive="active-link">
+        <mat-icon>list</mat-icon>
+        Liste des Opportunités
     </a>
 
     <mat-divider></mat-divider>

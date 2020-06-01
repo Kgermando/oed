@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ProfileService, ErrorStateMatcherForsignUppage } from '../services/auth/profile.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ProfileService, ErrorStateMatcherForsignUppage } from 'src/app/dashboard/services/profile.service';
 
 @Component({
   selector: 'app-request-password',

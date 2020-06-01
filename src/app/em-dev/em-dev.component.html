@@ -1,4 +1,4 @@
-<div>
+<div >
   <mat-toolbar color="primary" class="toolbar-1">
     <a mat-button matTooltip="Contactez Nous ici" class="toolbar-main-2">
       <mat-icon aria-hidden="false" aria-label="Emergence et developpement contact">call</mat-icon>
@@ -16,21 +16,21 @@
     <span class="menu-spacer"></span>
 
       <span *ngIf="authService.user$ | async as user">
-        <a routerLink="/admin" mat-button matTooltip="Admin" routerLinkActive="active-link" *ngIf="user?.roles.admin === true">
+        <a routerLink="/admin" mat-button matTooltip="Admin" routerLinkActive="active-link" *ngIf="user?.role === 'Admin'">
           <mat-icon aria-hidden="false" aria-label="Fast Smart Admin">settings</mat-icon>
         </a>
       </span>
 
-      <a routerLink="/emdev/layouts/contact" mat-button matTooltip="Contact" routerLinkActive="active-link" >
+      <!-- <a routerLink="/emdev/layouts/contact" mat-button matTooltip="Contact" routerLinkActive="active-link" >
         <mat-icon aria-hidden="false" aria-label="Emergence et developpement Admin">contact_support</mat-icon>
-      </a>
+      </a> -->
 
     <div class="auth_cart">
       <button mat-button [matMenuTriggerFor]="menu" matTooltip="Menu Authentification">
         <mat-icon aria-hidden="false" aria-label="Emergence et developpement profile">person</mat-icon>
       </button> 
       <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/emdev/auth/dashboard" routerLinkActive="active-link" *ngIf="loggedIn$ | async">
+        <button mat-menu-item routerLink="/emdev/dashboard" routerLinkActive="active-link" *ngIf="loggedIn$ | async">
           <mat-icon aria-hidden="false" aria-label="Profile Emergence et developpement">perm_identity</mat-icon>
           Tableau de bord
         </button>
@@ -54,46 +54,73 @@
     <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
       <mat-icon>menu</mat-icon>
     </button>
-    <a routerLink="/emdev/layouts" mat-button matTooltip="Emergence et developpement">
+    <a routerLink="/emdev/layouts/home" mat-button matTooltip="Emergence et developpement">
       <img src="../assets/img/logo.png" alt="logo Emergence et developpement">
     </a>
     <span class="menu-spacer"></span>
     <div fxShow="true" fxHide.lt-md>
-       
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
-        
+        <a routerLink="/emdev/layouts/home" mat-button matTooltip="Home" routerLinkActive="active-link" >
+          <mat-icon aria-hidden="false" aria-label="Emergence et developpement Acceuil">home</mat-icon>
+          Acceuil
+        </a>
+        <a routerLink="/emdev/layouts/about" mat-button matTooltip="About" routerLinkActive="active-link" >
+          <mat-icon aria-hidden="false" aria-label="Emergence et developpement About">info</mat-icon>
+          A Propos de Nous
+        </a>
+        <a routerLink="/emdev/layouts/activites" mat-button matTooltip="Activity" routerLinkActive="active-link" >
+          <mat-icon aria-hidden="false" aria-label="Emergence et developpement Activités">dvr</mat-icon>
+          Activités
+        </a>
+        <a routerLink="/emdev/layouts/contact" mat-button matTooltip="Contact-Us" routerLinkActive="active-link" >
+          <mat-icon aria-hidden="false" aria-label="Emergence et developpement Contact">contact_support</mat-icon>
+          Contactez-Nous
+        </a>
     </div>
     <div class="toolbar-main-mobile">
-      <a mat-button matTooltip="contact" class="toolbar-main-1" routerLink="/emdev/layouts/forms-paternaires" routerLinkActive="active"> 
-        <mat-icon aria-hidden="false" aria-label="Emergence et developpement contact">how_to_reg</mat-icon>
-        Formulaire Parternaires
-      </a>
-
-      <a mat-button matTooltip="Contactez Nous ici" class="toolbar-main-2" routerLink="/emdev/layouts/forms-membres" routerLinkActive="active">
-        <mat-icon aria-hidden="false" aria-label="Emergence et developpement contact">person_add</mat-icon>
-          Formulaire Membres
-      </a>
+      <button mat-button [matMenuTriggerFor]="menuform" class="toolbar-main-2">
+        Formulaire d'adhesion
+        <mat-icon aria-hidden="false" aria-label="Emergence et developpement Forms">keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-menu #menuform="matMenu">
+        <button mat-menu-item routerLink="/emdev/layouts/forms-membres" routerLinkActive="active-link">
+          <mat-icon aria-hidden="false" aria-label="Emergence et developpement Membres">person_add</mat-icon>
+          Membres
+        </button>
+        <button mat-menu-item routerLink="/emdev/layouts/forms-person-morale" routerLinkActive="active-link">
+          <mat-icon aria-hidden="false" aria-label="Emergence et developpement Personne Morale">domain</mat-icon>
+          Personne Morale
+        </button>
+      </mat-menu>
     </div>
   </mat-toolbar>
   
     <mat-sidenav-container fxFlexFill>
       <mat-sidenav #sidenav (click)="sidenav.close()">
         <mat-nav-list>
-          <a routerLink="/emdev/layouts/forms-paternaires" mat-list-item routerLinkActive="active-link">
-            <mat-icon aria-hidden="false" aria-label="Emergence et developpement home">person_add</mat-icon>
+          <!-- <a routerLink="/emdev/layouts/forms-paternaires" mat-list-item routerLinkActive="active-link">
+            <mat-icon aria-hidden="false" aria-label="Emergence et developpement home">people_outline</mat-icon>
               Formulaire Parternaires 
-          </a>
-          <a routerLink="/emdev/layouts/forms-membres" mat-list-item routerLinkActive="active-link">
-            <mat-icon aria-hidden="false" aria-label="Emergence et developpement panier category">apps</mat-icon>
+          </a> -->
+          <!-- <a routerLink="/emdev/layouts/forms-membres" mat-list-item routerLinkActive="active-link">
+            <mat-icon aria-hidden="false" aria-label="Emergence et developpement panier category">group_add</mat-icon>
             Formulaire Membres
-          </a>
-          <a routerLink="/emdev/layouts/contact" mat-list-item routerLinkActive="active-link">
-            <mat-icon aria-hidden="false" aria-label=" Emergence et developpement contactez nous">send</mat-icon>
-            Contact
+          </a> -->
+          <a routerLink="/emdev/layouts/home" mat-list-item routerLinkActive="active-link">
+            <mat-icon aria-hidden="false" aria-label=" Emergence et developpement Acceuil">home</mat-icon>
+            Acceuil
           </a>
           <a routerLink="/emdev/layouts/about" mat-list-item routerLinkActive="active-link">
             <mat-icon aria-hidden="false" aria-label=" Emergence et developpement contactez nous">info</mat-icon>
             A Propos
+          </a>
+          <a routerLink="/emdev/layouts/activity" mat-list-item routerLinkActive="active-link">
+            <mat-icon aria-hidden="false" aria-label=" Emergence et developpement contactez nous">dvr</mat-icon>
+            Activités
+          </a>
+          <a routerLink="/emdev/layouts/contact" mat-list-item routerLinkActive="active-link">
+            <mat-icon aria-hidden="false" aria-label=" Emergence et developpement contactez nous">send</mat-icon>
+            Contact
           </a>
           <!-- <span *ngIf="authService.user$ | async as user">
             <a routerLink="/admin" mat-list-item matTooltip="Admin" routerLinkActive="active-link" *ngIf="user?.roles.admin === true">

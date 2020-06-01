@@ -3,7 +3,6 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,7 +20,7 @@ export class AuthGuard implements CanActivate {
           }
           else if(!res){
             observer.next(false);
-            this.router.navigate(['/fastsmart/layouts']);
+            this.router.navigate(['/auth/login']);
           }
         })
       })

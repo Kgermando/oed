@@ -72,7 +72,7 @@ errorMessage = 'Vérifiez les champs';
 
   openSuccessBar() {
     // let snackBarRef = snackBar.open('Message archived');
-    this.snackbar.open('Message avec succés!', '', {
+    this.snackbar.open('Message avec succès!', '', {
       duration: 3000
     });
   }

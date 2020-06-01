@@ -1,42 +1,10 @@
-section {
-  width: 100%;
-  // height: 70vh;
-  align-self: center;
-  margin-top: 100px;
+.login {
+    margin-top: 10%;
+    margin-bottom: 30%;
 }
-
-// .container {
-//   width: 100%;
-//   height: 100vh;
-//   align-self: center;
-// }
-
-h2 {
-  font-weight: 900;
-  text-align: center;
+img {
+    width: 100px;
+    height: 100px;
+    // padding-top: 30px;
+    // padding-bottom: 30px;
 }
-
-.container .logo {
-  width: 100px;
-  cursor: pointer;
-}
-
-mat-card {
-  margin-bottom: 10%;
-}
-
-// /* Border */
-// .mat-form-field-appearance-outline .mat-form-field-outline {
-//   color: white;
-// }
-// /* Font color */
-// input.mat-input-element {
-//   color: white;
-// }
-// .placeholder {
-//   color: white;
-// }
-
-// .padded {
-//   padding: 7px 0px;
-// }

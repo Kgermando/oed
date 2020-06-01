@@ -1,0 +1,143 @@
+<div class="forms" fxLayout="row" fxLayoutGap="10px">
+    <form [formGroup]='persMoraleFG' id="file-upload-form" class="uploader" >
+        <div
+            class="dropzone"
+            DropZone
+            (hovered)="toggleHover($event)"
+            (dropped)="startUpload($event)"
+            [class.hovering]="isHovering"
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            fxLayoutGap="10px"
+            class="pt-20">
+            <input
+            id="file-upload"
+            type="file"
+            name="fileUpload"
+            accept="image/*"
+            (change)="startUpload($event.target.files)"/>
+            <label for="file-upload" id="file-drag">
+            <img id="file-image" src="#" alt="Preview" class="hidden" />
+            <div id="start">
+                <i class="fa fa-upload" aria-hidden="true"></i>
+                <div>Select a file or drag here</div>
+                <div id="notimage" class="hidden">Please select an image</div>
+                <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+            </div>
+            <div id="response" class="hidden">
+                <div id="messages"></div>
+                <div *ngIf="percentage | async as pct">
+                <progress
+                    class="progress is-info"
+                    [value]="pct"
+                    max="100"
+                    id="file-progress">
+                    <span>{{ pct }}</span>%
+                </progress>
+                </div>
+            </div>
+            </label>
+        </div>
+
+      <div *ngIf="percentage | async as pct">
+        <progress class="progress is-info" [value]="pct" max="100"></progress>
+        {{ pct | number }}%
+      </div>
+      
+        <div class="forms-a" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5px"> 
+
+            <mat-form-field>
+                <mat-label>Nom du Projet</mat-label>
+                <input matInput type="text" placeholder="Nom du Projet" formControlName="ProjectForm" >
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nom de l'Entreprise</mat-label>
+                <input matInput type="text" placeholder="Nom de l'Entreprise" formControlName="CompanyName" >
+            </mat-form-field> 
+
+            <mat-form-field>
+                <mat-label>Id. Nat</mat-label>
+                <input matInput type="text" placeholder="Id. Nat" formControlName="IdNat" >
+            </mat-form-field> 
+      
+            <mat-form-field>
+                <mat-label>RCCM</mat-label>
+                <input matInput type="text" placeholder="RCCM" formControlName="RCCM" >
+            </mat-form-field> 
+
+            <mat-form-field>
+                <mat-label>N° d'Impôt</mat-label>
+                <input matInput type="text" placeholder="N° d'Impôt" formControlName="NImpot" >
+            </mat-form-field> 
+
+            <mat-form-field>
+                <mat-label>Numéro Autorisation Ouverture</mat-label>
+                <input matInput type="number" placeholder="Numéro Autorisation Ouverture" formControlName="AutorisationOuvertureN" >
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Objet</mat-label>
+                <input matInput type="text" placeholder="Objet" formControlName="Objet" >
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Siège Social</mat-label>
+                <input matInput type="text" placeholder="Siège Social" formControlName="HeadQuarters" >
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Secteur d'Activité</mat-label>
+                <input matInput type="text" placeholder="Secteur d'Activité" formControlName="SecteurActivite" >
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Branche d'Activité</mat-label>
+                <input matInput type="text" placeholder="Branche d'Activité" formControlName="BrancheActivite" >
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Téléphone Entreprise</mat-label>
+                <input matInput type="number" placeholder="Téléphone de l'Entreprise" formControlName="TelephoneEntreprise" >
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Email Entreprise</mat-label>
+                <input matInput type="text" placeholder="Email de l'Entreprise" formControlName="EmailEntreprise" >
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nom du gérant</mat-label>
+                <input matInput type="text" placeholder="Nom Function" formControlName="Name" >
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nationalité</mat-label>
+                <mat-select formControlName="Nationalite" >
+                <mat-option value="{{ nation }}" *ngFor="let nation of nation$" >{{ nation }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Fonction</mat-label>
+                <input matInput type="text" placeholder="Fonction du Gérant" formControlName="Function" >
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Phone</mat-label>
+                <input matInput type="number" placeholder="Numéro du Gérant" formControlName="Phone" >
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput type="Email" placeholder="Email" formControlName="Email" >
+            </mat-form-field>
+        </div>
+        <div class="btn">
+            <button type="submit" (click)="onSubmit()" [disabled]="!persMoraleFG.valid" mat-raised-button color="primary" >
+                Enregistez le formulaire
+            </button>
+        </div>
+    </form>
+
+</div>

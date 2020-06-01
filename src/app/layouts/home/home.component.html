@@ -1,180 +1,85 @@
 <div class="home">
   <section class="hero-slider">
-    <div class="hero">
+    <div class="desktop">
+      <mat-carousel
+      timings="300ms ease-in"
+      [autoplay]="true"
+      interval="5000"
+      color="accent"
+      maxWidth="auto"
+      proportion="40"
+      slides="3"
+      [loop]="true"
+      [hideArrows]="true"
+      [hideIndicators]="false"
+      [useKeyboard]="true"
+      [useMouseWheel]="false"
+      orientation="ltr">
+      <mat-carousel-slide
+        #matCarouselSlide
+        *ngFor="let slide of slides; let i = index"
+        [image]="slide.image"
+        overlayColor="#00000040"
+        [hideOverlay]="false">
+
         <div class="hero-text">
-            <h2 class="hero-text-title">
-                Bienvenue sur la plateforme <br>
-                <span>Emergence & Développement</span> 
-            </h2>
-            <p class="hero-text-content">
-                Les membres fondateurs, réunis, ont convenu de créer une organisation apolitique 
-                pour mettre en œuvre un certain nombre de projets afin de faire face à plusieurs problèmes notamment : 
-                la  pauvreté qui sévit la majorité de la population et tant d'autres...
-                <br>
-                
-                Pour l’émergence et le développement de la RDC et de tant d’autres pays qui, actuellement, éprouvent les mêmes
-                problèmes que la RDC.
-            </p>
-            <button class="btn-hero-1" routerLink="/emdev/layouts/about" mat-raised-button matTooltip="Plus d'infos">EN SAVOIR PLUS</button>
-
-            <!-- <button class="btn-hero-2" mat-raised-button matTooltip="Plus d'infos">ACCEDER A LA FICHE D'ADHESION</button> -->
+          <h2 class="hero-text-title">
+              Bienvenue sur la plateforme de <br>
+              <span>l'organisation pour l'Emergence et le Développement</span> 
+          </h2>
+          <p class="hero-text-content">
+            Loin d’avoir une connotation politique, encore moins des intérêts égoïstes, 
+            nous prônons l'épanouissement des plusieurs avec des objects précis.
+            L’OED  préconise l'émergence et le developpement.
+            L'OED  est une organisation des hommes, femmes, jeunes et vieux, employeurs et employés, professionnels
+            et chômeurs, professeurs et étudiants, dirigeants et dirigés.
+          </p>
+          <button class="btn-hero-1" routerLink="/emdev/layouts/about" mat-raised-button matTooltip="Plus d'infos">EN SAVOIR PLUS</button>
         </div>
-        <div class="hero-form">
-          <mat-card>
-            <mat-tab-group>
-              <mat-tab label="Formulaire d’adhesion du membre"> 
-            
-                <mat-horizontal-stepper  #stepper>
-                  <mat-step >
-                    <form >
-                      <ng-template matStepLabel>IDENTITE</ng-template>
-                      <div class="mat-form-1">
-                        <div class="mat-form-1-1">
-                          <mat-form-field>
-                            <mat-label>Nom Complet</mat-label>
-                            <input matInput type="text" placeholder="Nom, Post-Nom, Prénom" required>
-                          </mat-form-field>
-                          <mat-form-field>
-                            <mat-label>Sexe</mat-label>
-                            <mat-select required>
-                              <mat-option value="Femme">Femme</mat-option>
-                              <mat-option value="Homme">Homme</mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                        </div>
-                        <div class="mat-form-1-1">
-                          <mat-form-field>
-                            <mat-label>Date de naissance</mat-label>
-                            <input matInput [matDatepicker]="picker" required>
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                          </mat-form-field>
-                          <mat-form-field>
-                            <mat-label>Lieu de naissance</mat-label>
-                            <input matInput type="text" placeholder="Lien de naissance" required>
-                          </mat-form-field>
-                        </div>
-                        <div class="mat-form-1-1">
-                          <mat-form-field>
-                            <mat-label>Etat Civil</mat-label>
-                            <mat-select required>
-                              <mat-option value="Célibataire">Célibataire</mat-option>
-                              <mat-option value="Marié">Marié</mat-option>
-                              <mat-option value="Veuve">Veuve</mat-option>
-                              <mat-option value="veuf">veuf</mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                          <mat-form-field>
-                            <mat-label>Nombre Enfants</mat-label>
-                            <input matInput type="number" placeholder="Nombre des Enfants" required>
-                          </mat-form-field>
-                        </div>
-                        <div>
-                          <mat-form-field>
-                            <mat-label>Fils/Fille de Père</mat-label>
-                            <input matInput placeholder="Nom de parent..." required>
-                          </mat-form-field>
-                          <mat-form-field>
-                            <mat-label>Fils/Fille de Mère</mat-label>
-                            <input matInput placeholder="Nom de parent..." required>
-                          </mat-form-field>
-                        </div>
-                        
-                      </div>
-                      <div class="mat-form-2">
-                        
-                        <mat-form-field>
-                          <mat-label>Nationalité</mat-label>
-                          <mat-select required>
-                            <mat-option value="{{ nation }}" *ngFor="let nation of nation$" >{{ nation }}</mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                        <mat-form-field>
-                          <mat-label>Adresse physique</mat-label>
-                          <textarea matInput required></textarea>
-                        </mat-form-field>
-                      </div>
-                      
-                      <div>
-                        <button mat-button matStepperNext 
-                          style="background-color: #18B52B; color: white; width: 100%;" >Suivant</button>
-                      </div>
-                    </form>
-                  </mat-step>
-                  <mat-step >
-                    <form >
-                      <ng-template matStepLabel>ETUDES FAITES</ng-template>
-                      <mat-form-field>
-                        <mat-label>Address</mat-label>
-                        <input matInput  placeholder="Ex. 1 Main St, New York, NY"
-                                required>
-                      </mat-form-field>
-                      <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
-                      </div> 
-                    </form>
-                  </mat-step>
-                  <mat-step>
-                    <ng-template matStepLabel>Done</ng-template>
-                    <p>You are now done.</p>
-                    <div>
-                      <button mat-button matStepperPrevious>Back</button>
-                      <button mat-button (click)="stepper.reset()">Reset</button>
-                    </div>
-                  </mat-step>
-                </mat-horizontal-stepper>
-  
-                
-              </mat-tab>
-              <mat-tab label="Formulaire d’adhesion du partenaire"> 
-
-      
-                  <mat-horizontal-stepper  #stepper>
-                  <mat-step >
-                    <form >
-                      <ng-template matStepLabel>Fill out your name</ng-template>
-                      <mat-form-field>
-                        <mat-label>Name</mat-label>
-                        <input matInput placeholder="Last name, First name" >
-                      </mat-form-field>
-                      <div>
-                        <button mat-button matStepperNext>Next</button>
-                      </div>
-                    </form>
-                  </mat-step>
-                  <mat-step >
-                    <form >
-                      <ng-template matStepLabel>Fill out your address</ng-template>
-                      <mat-form-field>
-                        <mat-label>Address</mat-label>
-                        <input matInput  placeholder="Ex. 1 Main St, New York, NY"
-                                required>
-                      </mat-form-field>
-                      <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
-                      </div>
-                    </form>
-                  </mat-step>
-                  <mat-step>
-                    <ng-template matStepLabel>Done</ng-template>
-                    <p>You are now done.</p>
-                    <div>
-                      <button mat-button matStepperPrevious>Back</button>
-                      <button mat-button (click)="stepper.reset()">Reset</button>
-                    </div>
-                  </mat-step>
-                </mat-horizontal-stepper>
-
-              </mat-tab>
-            </mat-tab-group>
-          </mat-card>
-            
-              
-              
-        </div>
+      </mat-carousel-slide>
+    </mat-carousel>
     </div>
+
+    <div class="mobile">
+      <mat-carousel
+      timings="300ms ease-in"
+      [autoplay]="true"
+      interval="5000"
+      color="accent"
+      maxWidth="auto"
+      proportion="100"
+      slides="3"
+      [loop]="true"
+      [hideArrows]="true"
+      [hideIndicators]="true"
+      [useKeyboard]="true"
+      [useMouseWheel]="false"
+      orientation="ltr">
+      <mat-carousel-slide
+        #matCarouselSlide
+        *ngFor="let slide of slides"
+        [image]="slide.image"
+        overlayColor="#00000040"
+        [hideOverlay]="false">
+
+        <div class="hero-text">
+          <h2 class="hero-text-title">
+            Bienvenue sur la plateforme de <br>
+            <span>l'Organisation pour l'Emergence et le Développement</span> 
+          </h2>
+          <p class="hero-text-content">
+            Loin d’avoir une connotation politique, encore moins des intérêts égoïstes, 
+            nous prônons l'épanouissement des plusieurs avec des objects précis.
+            L’OED  préconise l'émergence et le developpement.
+            L'OED  est une organisation des hommes, femmes, jeunes et vieux, employeurs et employés, professionnels
+            et chômeurs, professeurs et étudiants, dirigeants et dirigés.
+          </p>
+          <button class="btn-hero-1" routerLink="/emdev/layouts/about" mat-raised-button matTooltip="Plus d'infos">EN SAVOIR PLUS</button>
+        </div>
+      </mat-carousel-slide>
+    </mat-carousel>
+    </div>
+    
   </section>
 
   <section class="vision">
@@ -182,56 +87,40 @@
 
     <div class="vision-content">
 
-      <div class="icon-box-item">
-        <div class="ib-icon">
-          <mat-icon aria-hidden="false" aria-label=" Emergence et developpemrnt contactez nous">redeem</mat-icon>
-        </div>
-        <div class="ib-text">
-          <h5>Innovation!</h5>
-          <p>
-            Développer, conforter, partager et promouvoir le savoir, 
-            la recherche, l’innovation et la technologie. 
-          </p>
-        </div>
-      </div>
-
-      <div class="icon-box-item">
-        <div class="ib-icon">
-          <mat-icon aria-hidden="false" aria-label=" Emergence et developpemrnt contactez nous">verified_user</mat-icon>
-        </div>
-        <div class="ib-text">
-          <h5>Economie!</h5>
-          <p>
-            Promouvoir la création et le développement des activités économiques. 
-          </p>
+      <div class="card_grid" fxLayout="row wrap"
+          fxLayout.lt-sm="column"
+          fxLayoutGap="4%"
+          fxLayoutAlign="flex-start"> 
+          <ng-container *ngFor="let v of vision$">
+            <mat-card class="example-card" fxLayout="row" fxFlex="0 1 calc(33.3% - 4%)" fxFlex.lt-md="0 1 calc(50% - 4%)" fxFlex.lt-sm="100%">
+              <div class="ib-icon" fxFlex="25">
+                <mat-icon aria-hidden="false" aria-label="Emergence et developpement Objectif et vision">{{ v.icon}}</mat-icon>
+              </div>
+              <div class="ib-text" fxFlex="75">
+                <h5>{{v.title}}</h5>
+                <p>
+                  {{v.content}}
+                </p>
+              </div>
+            </mat-card>
+          </ng-container>
         </div>
       </div>
 
-      <div class="icon-box-item">
-        <div class="ib-icon">
-          <mat-icon aria-hidden="false" aria-label=" Emergence et developpemrnt contactez nous">add_to_queue</mat-icon>
-        </div>
-        <div class="ib-text">
-          <h5>Valeurs!</h5>
-          <p>
-            Lutter contre les antivaleurs : la corruption, l’exclusion, 
-            le tribalisme, les guerres, les inégalités sociales et de sexe, etc. 
-          </p>
-        </div>
+      <div fxLayoutAlign="center center">
+        <button class="btn-vision" routerLink="/emdev/layouts/about" mat-raised-button>
+          Plus
+        </button>
       </div>
-
-    </div>
-
-    <button class="btn-vision" routerLink="/emdev/layouts/about" mat-raised-button>
-      Plus
-    </button>
+   
     
   </section>
 
   <section class="cta-section"> 
-		<div class="container">
+		<div class="container"> 
 			<h2>Avez-vous déjà rempli le formulaire  des <strong>membres</strong>?</h2>
-			<h5>Si vous ne l'avez pas encore fait, c'est le bon moment cliquez sur le boutton ci-dessous.</h5>
+			<h5>Si vous n'êtes pas encore membre, merci de remplir le formulaire en
+         cliquant sur le boutton ci-dessous.</h5>
       <!-- <a href="#" class="site-btn sb-dark sb-big">Find out More</a> -->
       <button class="btn-cta-section" routerLink="/emdev/layouts/forms-membres" mat-raised-button matTooltip="Remplir le formulaire de membres">
         REMPLIR LE FORMULAIRE
@@ -239,26 +128,21 @@
 		</div>
   </section>
   
-  <section class="card-home">
-
-    <!-- <ng-container *ngFor="let _ of [1,2]">
-      <mat-card>
-        <div class="card-img">
-          <img src="../../../assets/img/feature-1.jpg" alt="">
+  <section class="card-home" 
+    fxLayout="column"
+    fxLayoutAlign="flex-start">
+    <ng-container *ngFor="let conf of conference">
+      <mat-card fxLayoutGap="20px" fxLayout="row" fxFlex.lt-sm="column" >
+        <div class="card-img" fxFlex.sm="40">
+          <img [src]="conf.img" mat-card-image alt="conference Emergence et developpement">
         </div>
-        <div class="card-content">
-          <div class="card-icon">
-            <mat-icon aria-hidden="false" aria-label=" Emergence et developpemrnt contactez nous">add_to_queue</mat-icon>
-          </div>
-          <h3 class="card-header">Présentation du conference</h3>
+        <div class="card-content" fxFlex.sm="60">
+          <h3 class="card-header">{{conf.title}}</h3>
           <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt ut labore et 
-            dolore mag na aliqua. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-             per inceptos himenaeos. Suspendisse potenti. Ut gravi-da mattis magna, non varius lorem sodales nec. I
+            {{conf.content}}
           </p>
         </div>
       </mat-card>
-    </ng-container> -->
-    
+    </ng-container>
   </section>
 </div>

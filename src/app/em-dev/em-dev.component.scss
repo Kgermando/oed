@@ -2,10 +2,6 @@
   height: 40px;
   display: flex;
   flex-direction: row;
-
-  // .auth_cart {
-    
-  // }
 }
 
 .toobar-main {
@@ -31,8 +27,6 @@
         margin-right: 0;
       }
     }
-
-    
   }
   
   mat-sidenav {
@@ -42,7 +36,7 @@
   mat-nav-list {
     a {
       mat-icon {
-        padding-right: 10px;
+        padding-right: 20%;
       }
     }
   }
@@ -57,22 +51,23 @@
   }
   
   .active-link{
-    color: #18B52B;
+    color: #fff;
+    background-color: #2E4F9F;
   }
 
-  .active{
-    background-color: #18B52B;
-  }
+  // .active{
+  //   background-color: #2E4F9F;
+  // }
   
   img {
     width: 70px; 
     height: 70px;
   }
   
-  a :hover {
-    text-decoration: none;
-    color: #18B52B;
-  }
+  // a :hover {
+  //   text-decoration: none;
+  //   color: #18B52B;
+  // }
   
   
   @media screen and (max-width: 600px) {

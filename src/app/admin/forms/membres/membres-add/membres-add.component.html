@@ -1,0 +1,161 @@
+<div class="hero-form">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Formulaire d'adhesion des membres</mat-card-title>
+      </mat-card-header>
+        <form [formGroup]="addMembresForm" id="file-upload-form" class="uploader">
+
+          <div class="dropzone" DropZone (hovered)="toggleHover($event)" (dropped)="startUpload($event)" 
+          [class.hovering]="isHovering" fxLayout="column"
+          fxLayoutAlign="center center"
+          fxLayoutGap="10px"
+          
+          class="pt-20">
+
+          <input id="file-upload" type="file" name="fileUpload" accept="image/*" (change)="startUpload($event.target.files)"/>
+      
+          <label for="file-upload" id="file-drag">
+            <img id="file-image" src="#" alt="Preview" class="hidden" />
+            <div id="start">
+              <i class="fa fa-upload" aria-hidden="true"></i>
+              <div>Selectionnez ou faites glisser une image ici</div>
+              <div id="notimage" class="hidden">Selectionnez l'image</div>
+              <span id="file-upload-btn" class="btn btn-primary">
+                Select a file
+              </span>
+            </div>
+            <div id="response" class="hidden">
+              <div id="messages"></div>
+              <div *ngIf="percentage | async as pct">
+                <progress
+                  class="progress is-info"
+                  [value]="pct"
+                  max="100"
+                  id="file-progress">
+                  <span>{{ pct }}</span> %
+                </progress>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div *ngIf="percentage | async as pct">
+          <progress class="progress is-info" [value]="pct" max="100">
+          </progress>
+
+          {{ pct | number }}%
+        </div>
+
+                  <!-- <ng-template matStepLabel>IDENTITE</ng-template> -->
+                  <div class="mat-form-1">
+                    <div class="mat-form-1-1">
+                      <mat-form-field>
+                        <mat-label>Nom Complet</mat-label>
+                        <input matInput type="text" placeholder="Nom, Post-Nom, Prénom" formControlName="FullName" required>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-label>Sexe</mat-label>
+                        <mat-select formControlName="Sex" required>
+                          <mat-option value="Femme">Femme</mat-option>
+                          <mat-option value="Homme">Homme</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="mat-form-1-1">
+                      <mat-form-field>
+                        <mat-label>Date de naissance</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="Birthday" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-label>Lieu de naissance</mat-label>
+                        <input matInput type="text" placeholder="Lien de naissance" formControlName="PlaceBirthday" required>
+                      </mat-form-field>
+                    </div>
+                    <div class="mat-form-1-1">
+                      <mat-form-field>
+                        <mat-label>Etat Civil</mat-label>
+                        <mat-select formControlName="EtatCivil" required>
+                          <mat-option value="Célibataire">Célibataire</mat-option>
+                          <mat-option value="Marié">Marié</mat-option>
+                          <mat-option value="Veuve">Veuve</mat-option>
+                          <mat-option value="veuf">veuf</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-label>Nombre Enfants</mat-label>
+                        <input matInput formControlName="NbreEnfant" type="number" placeholder="Nombre des Enfants" required>
+                      </mat-form-field>
+                    </div>
+                    <div class="mat-form-1-1">
+                        <mat-form-field>
+                          <mat-label>Langues Parlé</mat-label>
+                          <mat-select formControlName="LangueParle" multiple>
+                            <mat-option *ngFor="let Langue of Langues" [value]="Langue">{{Langue}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="mat-form-2">
+                    <mat-form-field>
+                      <mat-label>Nationalité</mat-label>
+                      <mat-select formControlName="Nationalite" required>
+                        <mat-option value="{{ nation }}" *ngFor="let nation of nation$" >{{ nation }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>Adresse physique</mat-label>
+                      <textarea rows="3" matInput formControlName="Adresse" required></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <mat-form-field>
+                        <mat-label>Province</mat-label>
+                        <select matNativeControl (change)="changeCountry($event.target.value)" formControlName="Province">
+                            <option value="{{count.name}}" *ngFor="let count of countryList">{{count.name}}</option>
+                        </select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Ville</mat-label> 
+                        <select matNativeControl formControlName="Ville">
+                            <option value="volvo">== Aucun selectionner ==</option>
+                            <option value="{{city}}" *ngFor ="let city of ville">{{city}}</option>
+                        </select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Cheferie / Secteur</mat-label>
+                        <select matNativeControl formControlName="TerritoireCheferie">
+                            <option value="volvo">== Aucun selectionner ==</option>
+                            <option value="{{city}}" *ngFor ="let city of secteurCheferie">{{city}}</option>
+                        </select>
+                    </mat-form-field>
+                  </div>
+                  <!-- <ng-template matStepLabel>ETUDES FAITES</ng-template> -->
+                  <mat-form-field>
+                    <mat-label>Etudes faites</mat-label>
+                    <textarea matInput rows="5" formControlName="Etudes" placeholder="Ex: Diplome, Certificat, Formation, ..." required></textarea>
+                  </mat-form-field>
+                  
+                    <!-- <ng-template matStepLabel>ETUDES FAITES</ng-template> -->
+                  <mat-form-field>
+                    <mat-label>Expériences professionnelles</mat-label>
+                    <textarea matInput rows="5" formControlName="Experience" required></textarea>
+                  </mat-form-field>
+
+                    <!-- <ng-template matStepLabel>ETUDES FAITES</ng-template> -->
+                <!-- <mat-form-field>
+                  <mat-label>Frais d’adhésion</mat-label>
+                  <textarea matInput rows="5" formControlName="Frais" placeholder="Mettez le information relative au payement" required></textarea>
+                </mat-form-field> -->
+
+                    <mat-checkbox formControlName="Approuve">j'approuve mon inscription</mat-checkbox>
+
+                <div class="btn-hero-b">
+                  <button class="btn-hero-2" mat-button (click)="onSubmit()" [disabled]="!addMembresForm.valid">
+                    Inscription
+                  </button>
+                </div> 
+        </form>
+    </mat-card>
+</div>

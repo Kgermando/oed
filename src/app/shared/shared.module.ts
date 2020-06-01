@@ -50,6 +50,8 @@ import {MatTreeModule} from '@angular/material/tree';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 
 @NgModule({
@@ -106,6 +108,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ReactiveFormsModule,
     HttpClientModule,
 
+    NgbModule,
+    MatCarouselModule
+
   ],
   exports: [
     A11yModule,
@@ -157,6 +162,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ReactiveFormsModule,
     
 
+    NgbModule,
+    MatCarouselModule
     // Pipes
  
 

@@ -1,141 +1,92 @@
-import { Injectable, NgZone } from '@angular/core';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, of, } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { User, RegisterRequest, LoginRequest } from '../models/user';
-import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
+import * as firebase from 'firebase';
+import { UserInformation, CustomerUserInformation, Person } from '../models/user';
+import { FormGroup } from '@angular/forms';
+import { Entities } from '../models/enum';
+import { UtilityService } from '../utility-service/utility.service';
 import { switchMap } from 'rxjs/operators';
-import { ToastService } from '../toast.service';
-import { Permissions } from '../models/permissions.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  user$: Observable<User>;
-  users$: Observable<User[]>;
-  usersCollection: AngularFirestoreCollection<User>;
-  errorsData: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  user$: Observable<Person>;
+  // start with no user
+  authState: any = null;
 
+  constructor(private angularfireauth: AngularFireAuth,
+    private angularfirestore: AngularFirestore, 
+    private util:UtilityService) { 
+      this.angularfireauth.authState.subscribe(data => (this.authState = data));
 
-  constructor(
-    private afAuth: AngularFireAuth,
-    private afs: AngularFirestore,
-    private router: Router,
-    private toaster: ToastService
-  ) {
-    this.user$ = this.afAuth.authState.pipe(
-      switchMap(user => {
-        if (user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
-        } else {
-          return of(null);
-        }
-      })
-    );
-  }
-
-  getAllUsers() {
-    this.usersCollection = this.afs.collection<User>('users');
-    return (this.users$ = this.usersCollection.valueChanges());
-  }
-
-  getErrors() {
-    return of(this.errorsData);
-  }
-
-  updateUserName(user: User) {
-    return new Promise<any>((resolve, reject) => {
-      const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-      userRef
-        .set(user, { merge: true })
-        .then(() => {
-          this.toaster.openSnackBar('Updated The users name.');
+      // Get the auth state, then fetch the Firestore user document or return null
+        this.user$ = this.angularfireauth.authState.pipe(
+        switchMap(user => {
+          if (user) {
+            // logged in, get custom user from Firestore
+            return this.angularfirestore.doc<Person>(`Person/${user.uid}`).valueChanges();
+          } else {
+            // logged out, null
+            // tslint:disable-next-line: deprecation
+            return of(null);
+          }
         })
-        .catch(() => {
-          reject();
+      );
+    }
+
+  signUp(user: UserInformation): Observable<any> {
+    return new Observable((observer) => {
+      this.angularfireauth
+        .createUserWithEmailAndPassword(user.email, user.password)
+        .then((accepted) => {
+          user.metaData.uid = accepted.user.uid;
+          this.createCustomUser(user.metaData);
+          this.sendEmailVerification();
+          observer.next(accepted);
+        })
+        .catch((err) => {
+          observer.next(err);
         });
     });
   }
 
-  emailSignUp(request: RegisterRequest) {
-    return this.afAuth
-      .createUserWithEmailAndPassword(request.email, request.password)
-      .then(user => {
-        return this.updateUserData(user.user, request);
-      })
-      .catch(error => {
-        this.errorsData.next(error.message);
-        this.toaster.openSnackBar(error.message);
-      });
+  createCustomUser(user: CustomerUserInformation) {
+    let personCollection = this.angularfirestore.collection<UserInformation>(Entities.Person);
+    personCollection.doc(user.uid).set(user);
+  }
+
+  getCurrentUser(){
+    return this.angularfireauth.currentUser;
   }
 
   signOut() {
-    this.afAuth.signOut();
-    this.router.navigate(['/fastsmart/auth/login']);
+    this.angularfireauth.signOut();
   }
 
-  signIn(req: LoginRequest) {
-    return this.afAuth.signInWithEmailAndPassword(req.email, req.password);
-  }
-
-  private updateUserData(user, customData: RegisterRequest) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    const data: User = {
-      uid: user.uid,
-      name: customData.name,
-      adress: customData.adress,
-      phone: customData.phone,
-      email: user.email,
-      roles: {
-        admin: customData.role === Permissions.ADMIN,
-        manager: customData.role === Permissions.MANAGER,
-        user: customData.role === Permissions.USER
-      }
-    };
-    userRef.set(data, { merge: true });
-    return this.router.navigate(['/fastsmart/layouts/home']);
-  }
-
-  isLogged(user: User): boolean {
-    if (user === null) {
-      return false;
-    } else {
-      return true;
-    }
+  sendEmailVerification() {
+    firebase.auth().currentUser.sendEmailVerification();
   }
 
 
-   
-  canUser(user: User): boolean {
-    const allowed = ['manager', 'user'];
-    return this.checkAuthorization(user, allowed);
+  signin(user: UserInformation): Observable<any> {
+    return new Observable((observer) => {
+      this.angularfireauth
+        .signInWithEmailAndPassword(user.email, user.password)
+        .then((acc) => {
+          observer.next(acc);
+        })
+        .catch((err) => {
+          observer.next(err);
+        });
+    });
   }
 
-  canEdit(user: User): boolean {
-    const allowed = ['user'];
-    return this.checkAuthorization(user, allowed);
+  touchAllfields(group:FormGroup){
+    this.util.touchAllFieldsOfForm(group);
   }
-
-  isAdmin(user: User): boolean {
-    const allowed = ['admin'];
-    return this.checkAuthorization(user, allowed);
-  }
-
-  private checkAuthorization(user: User, allowedRoles: string[]): boolean {
-    if (!user) {
-      console.log('no user');
-      return false;
-    }
-    for (const role of allowedRoles) {
-      if (user.roles[role]) {
-        console.log('authorized');
-        return true;
-      }
-    }
-    console.log('NOT authorized');
-    return false;
-  }
-
 }

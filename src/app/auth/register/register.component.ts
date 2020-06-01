@@ -1,44 +1,124 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { first } from "rxjs/operators";
+import { Subject } from "rxjs";
+import * as _ from "lodash";
+import { RolesView } from '../services/models/enum';
+import { UserInformation } from '../services/models/user';
 import { AuthService } from '../services/auth/auth.service';
-import { takeUntil } from 'rxjs/operators';
-import { User, RegisterRequest } from '../services/models/user';
-import { Permissions, PermissionsMap } from '../services/models/permissions.model';
+import { ErrorStateMatcherForsignUppage } from '../services/utility-service/utility.service';
+import { signupErrorCodes } from '../services/constants/ccnscConstants';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit, OnDestroy {
-  _permissions: PermissionsMap[];
-  _registerRequest: RegisterRequest = new RegisterRequest();
-  _user: User;
-  private onDestroy$ = new Subject<void>();
+export class RegisterComponent implements OnInit {
 
-  constructor(public authService: AuthService) {
-    this._permissions = [
-      // { value: Permissions.ADMIN, viewValue: 'Admininstrator' },
-      // { value: Permissions.MANAGER, viewValue: 'Manager' },
-      { value: Permissions.USER, viewValue: 'Client' }
-    ];
+  signupform: FormGroup;
+  roles = RolesView;
+  userInformation: UserInformation;
+  verificationEmailsent = 'L\'email de vérification a été envoyé';
+  isLoading: boolean = false;
+  matcher;
+  _unsubscribeAll: Subject<any>;
+
+  constructor(
+    private fb: FormBuilder,
+    private authenticationService: AuthService,
+    private router: Router,
+    private snackbar: MatSnackBar
+  ) {
+    this._unsubscribeAll = new Subject();
   }
 
-  ngOnInit(): void {
-    this.authService.user$.pipe(takeUntil(this.onDestroy$)).subscribe(user => (this._user = user));
+  ngOnInit() {
+    this.makingSignupForm();
+    this.setCustomValidation();
+  }
+  setCustomValidation() {
+    this.signupform.updateValueAndValidity();
+    this.matcher = new ErrorStateMatcherForsignUppage();
+  }
+  makingSignupForm() {
+    this.signupform = this.fb.group({
+      name: ["", [Validators.required]],
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", Validators.required],
+      phone: ["", Validators.required],
+      role: ["", Validators.required],
+      useraddress: ["", Validators.required]
+    });
   }
 
-  signup() {
-    this.authService.emailSignUp(this._registerRequest);
+  onSubmit() {
+    if (this.signupform.valid) {
+      this.isLoading = true;
+      this.userInformation = {
+        email: this.signupform.value.email,
+        password: this.signupform.value.password,
+        name: this.signupform.value.name,
+        metaData: {
+          name: this.signupform.value.name,
+          email: this.signupform.value.email,
+          role: this.signupform.value.role,
+          phoneNumber: this.signupform.value.phone,
+          useraddress: this.signupform.value.useraddress
+        }
+      };
+      this.registerUser(this.userInformation);
+    } else {
+      this.authenticationService.touchAllfields(this.signupform);
+    }
   }
 
-  check() {
-    this.authService.isAdmin(this._user);
+  registerUser(user: UserInformation) {
+    this.authenticationService
+      .signUp(user)
+      .pipe(first())
+      .subscribe(res => {
+        if (res && res.code) {
+          _.forEach(signupErrorCodes, (value, key) => {
+            if (res.code == value.code) {
+              this.openErrorBar();
+            }
+          });
+        } else {
+          this.openVerificationBar();
+          // this.routeToSignin();
+          this.routeToHome();
+        }
+        this.isLoading = false;
+      });
   }
 
+  openVerificationBar() {
+    this.snackbar.open('Enregistrement Reussie!', '', {
+      duration: 3000
+    });
+  }
+
+  openErrorBar() {
+    this.snackbar.open('Erreur d\'enregistrement!', '', {
+      duration: 3000
+    });
+  }
+
+  routeToSignin() {
+    this.router.navigate(['/auth/login']);
+  }
+
+  routeToHome() {
+    this.router.navigate(['/layouts/home']);
+  }
   ngOnDestroy() {
-    this.onDestroy$.next();
-    this.onDestroy$.complete();
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
+    this._unsubscribeAll.unsubscribe();
   }
-}
 
+}

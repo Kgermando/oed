@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { User, LoginRequest } from '../services/models/user';
-import { PermissionsMap } from '../services/models/permissions.model';
+import { first } from 'rxjs/operators';
+import * as _ from "lodash";
+import { UserInformation } from '../services/models/user';
 import { AuthService } from '../services/auth/auth.service';
-import { ToastService } from '../services/toast.service';
-// import { SpinnerService } from 'src/app/shared/services/data/spinner.service';
+import { UtilityService } from '../services/utility-service/utility.service';
+import { signinErrorCode } from '../services/constants/ccnscConstants';
 
 @Component({
   selector: 'app-login',
@@ -14,49 +15,77 @@ import { ToastService } from '../services/toast.service';
 })
 export class LoginComponent implements OnInit {
 
-  _permissions: PermissionsMap[];
-  _loginRequest: LoginRequest = new LoginRequest();
-  _user: Observable<User>;
-  isLoading = false;
+  isLoading:boolean = false;
+  userInformation: UserInformation;
+  signinform: FormGroup;
 
-  constructor(public authService: AuthService,
-              private router: Router, 
-              private toaster: ToastService,
-              // private spinnerService: SpinnerService
-              ) {}
+  constructor(
+		private authenticationservice: AuthService,
+		private fb: FormBuilder,
+		private router: Router,
+		private util: UtilityService
+		) { }
 
-  ngOnInit(): void {
-    this._user = this.authService.user$;
-    this._user.subscribe(user => {
-      if (user) {
-        this.router.navigate(['/fastsmart/layouts']);
-      }
-    });
-  }
 
-  login() {
-    this.isLoading = true;
-    this.authService
-      .signIn(this._loginRequest)
-      .then(value => {
-        this.isLoading = false;
-        this.router.navigate(['/fastsmart/layouts']);
-        // this.openSuccessBar();
-      })
-      .catch(error => {
-        this.toaster.openSnackBar(error.message);
-        this.isLoading = false;
-      });
-  }
+	ngOnInit() {
+		this.makingSignInForm();
+	}
+	
+	makingSignInForm() {
+		this.signinform = this.fb.group({
+		email: [ '', [ Validators.required, Validators.email ] ],
+		password: [ '', Validators.required ]
+		});
+	}
 
-  // openSuccessBar() {
-  //   this.spinnerService.openSnackBar({
-  //     data: { message: "Login Successful" },
-  //     duration: 6,
-  //     panelClass: ["default-snackbar"],
-  //     horizontalPosition: "right",
-  //     verticalPosition: "top"
-  //   });
-  // }
+  	onSubmit() {
+		if(this.signinform.valid){
+			this.isLoading = true;
+			this.userInformation = {
+				email: this.signinform.value.email,
+				password: this.signinform.value.password
+			};
+			// setTimeout(()=>{
+			// 	this.signinUser(this.userInformation);
+			// }, 4000);
+			this.signinUser(this.userInformation);
+		}
+		
+	}
+
+  	signinUser(user: UserInformation) {
+		this.authenticationservice.signin(user).pipe(first()).subscribe((res) => {
+			if (res && res.code) {
+				console.log(res.code);
+				this.validateSignIn(res.code);
+				this.isLoading = false;
+			} else {
+				console.log("Logged in");
+				this.router.navigate(['/layouts/home']);
+				this.isLoading = false;
+
+			}
+		});
+  	}
+  
+  validateSignIn(errorCode) {
+		this.updateform();
+		
+		let errobj={};
+		errobj[errorCode]=true;
+		if(errorCode==signinErrorCode["Wrong password"].code){
+			this.signinform.controls.password.setErrors(errobj);
+		}
+		else{
+			this.signinform.controls.email.setErrors(errobj);
+		}
+	}
+
+	updateform() {
+		let controlsvalues = this.util.getFormControlsValueFromFormGroup(this.signinform);
+		_.forEach(controlsvalues, (value) => {
+			this.signinform.get(value).markAsTouched();
+		});
+	}
 
 }
