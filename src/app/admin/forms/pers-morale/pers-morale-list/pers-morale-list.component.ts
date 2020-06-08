@@ -12,7 +12,7 @@ import { PersMoraleService } from '../services/pers-morale.service';
 })
 export class PersMoraleListComponent implements OnInit {
 
-  displayedColumns: string[] = ["Created", "CompanyName", "RCCM", "Objet",  "edit", "remove"];
+  displayedColumns: string[] = ["Created", "CompanyName", "Name", "RCCM", "edit", "remove"];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -21,16 +21,16 @@ export class PersMoraleListComponent implements OnInit {
   constructor(private persMoraleService: PersMoraleService, private router: Router) {}
 
   ngOnInit() {
-    this.persMoraleService.getPersMoraleByManager().subscribe(
+    this.persMoraleService.getAllpersMorale().subscribe(
       list => {
-          const products = list.map(item => {
+          const persMorale = list.map(item => {
           return {
             id: item.payload.doc.id,
             ...item.payload.doc.data()
           }
         });
         // console.log(products)
-        this.dataSource = new MatTableDataSource(products);
+        this.dataSource = new MatTableDataSource(persMorale);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
     })
@@ -41,7 +41,7 @@ export class PersMoraleListComponent implements OnInit {
   }
 
   removeProduct(id){
-    this.persMoraleService.removePersMoraleByID(id);
+    this.persMoraleService.removepersMoraleByID(id);
   }
 
 

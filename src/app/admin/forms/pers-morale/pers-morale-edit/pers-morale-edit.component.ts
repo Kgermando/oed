@@ -16,7 +16,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class PersMoraleEditComponent implements OnInit {
 
-
   persMoraleFG: FormGroup;
   persMoraleForm: PersMorale = {
     id: '',
@@ -33,8 +32,7 @@ export class PersMoraleEditComponent implements OnInit {
     BrancheActivite: '',
     TelephoneEntreprise: '',
     EmailEntreprise: '',
-    Name: '', // Responsable
-    Sex: '',
+    Name: '',
     Nationalite: '',
     Function: '',
     Phone: '',
@@ -82,17 +80,10 @@ export class PersMoraleEditComponent implements OnInit {
       TelephoneEntreprise: [''],
       EmailEntreprise: [''],
       Name: [''],
-      Sex: [''],
       Nationalite: [''],
       Function: [''],
       Phone: [''],
       Email: ['']
-    })
-  }
-
-  getUserId(){
-    this.persMoraleService.getUserId().subscribe(res=>{
-      this.getManagerId = res;
     })
   }
 
@@ -113,7 +104,6 @@ export class PersMoraleEditComponent implements OnInit {
       TelephoneEntreprise: this.persMoraleFG.value.TelephoneEntreprise,
       EmailEntreprise: this.persMoraleFG.value.EmailEntreprise,
       Name: this.persMoraleFG.value.Name,
-      Sex: this.persMoraleFG.value.Sex,
       Nationalite: this.persMoraleFG.value.Nationalite,
       Function: this.persMoraleFG.value.Function,
       Phone: this.persMoraleFG.value.Phone,
@@ -121,7 +111,7 @@ export class PersMoraleEditComponent implements OnInit {
       managerId: this.getManagerId,
       Created: new Date(),
     };
-    this.persMoraleService.updatePersMorale(this.persMoraleForm, this.getManagerId);
+    this.persMoraleService.updatepersMorale(this.persMoraleForm, this.getManagerId);
     this.showSnackbar();
     this.router.navigate(['/admin/forms/pers-morale/pers-morale-list']);
     } else {
@@ -155,15 +145,14 @@ export class PersMoraleEditComponent implements OnInit {
     }
   }
 
-
   getpersMoraleby(getManagerId) {
-    this.persMoraleService.getPersMoraleByPersMoraleId(getManagerId).subscribe(persMorale => {
+    this.persMoraleService.getpersMoraleBypersMoraleId(getManagerId).subscribe(persMorale => {
       this.patchData(persMorale.data);
       this.persMorale = persMorale.data;
     });
     // console.log(this.persMoraleInfo););
   }
-''
+
   patchData(persMorale: PersMorale) {
     this.persMoraleFG.patchValue({
       ProjectForm: persMorale.ProjectForm,
@@ -179,7 +168,6 @@ export class PersMoraleEditComponent implements OnInit {
       TelephoneEntreprise: persMorale.TelephoneEntreprise,
       EmailEntreprise: persMorale.EmailEntreprise,
       Name: persMorale.Name,
-      Sex: persMorale.Sex,
       Nationalite: persMorale.Nationalite,
       Function: persMorale.Function,
       Phone: persMorale.Phone,

@@ -33,8 +33,7 @@ export class PersMoraleAddComponent implements OnInit {
     BrancheActivite: '',
     TelephoneEntreprise: '',
     EmailEntreprise: '',
-    Name: '', // Responsable
-    Sex: '',
+    Name: '',
     Nationalite: '',
     Function: '',
     Phone: '',
@@ -55,14 +54,13 @@ export class PersMoraleAddComponent implements OnInit {
               private persMoraleService: PersMoraleService) { }
 
   ngOnInit():void {
-    this.getUserId();
     this.makingAddPersMoraleForm();
   }
 
   makingAddPersMoraleForm() {
     this.persMoraleFG = this.formBuilder.group({
-      ProjectForm: [''],
-      CompanyName: [''],
+      ProjectForm: ['', Validators.required],
+      CompanyName: ['', Validators.required],
       IdNat: [''],
       RCCM: [''],
       NImpot: [''],
@@ -73,8 +71,7 @@ export class PersMoraleAddComponent implements OnInit {
       BrancheActivite: [''],
       TelephoneEntreprise: [''],
       EmailEntreprise: [''],
-      Name: [''],
-      Sex: [''],
+      Name: ['', Validators.required],
       Nationalite: [''],
       Function: [''],
       Phone: [''],
@@ -83,11 +80,6 @@ export class PersMoraleAddComponent implements OnInit {
     })
   }
 
-  getUserId(){
-    this.persMoraleService.getUserId().subscribe(res=>{
-      this.getManagerId = res;
-    })
-  }
 
   onSubmit() {
     if (this.persMoraleFG.valid) {
@@ -105,7 +97,6 @@ export class PersMoraleAddComponent implements OnInit {
         TelephoneEntreprise: this.persMoraleFG.value.TelephoneEntreprise,
         EmailEntreprise: this.persMoraleFG.value.EmailEntreprise,
         Name: this.persMoraleFG.value.Name,
-        Sex: this.persMoraleFG.value.Sex,
         Nationalite: this.persMoraleFG.value.Nationalite,
         Function: this.persMoraleFG.value.Function,
         Phone: this.persMoraleFG.value.Phone,
@@ -114,7 +105,7 @@ export class PersMoraleAddComponent implements OnInit {
         managerId: this.getManagerId,
         Created: new Date(),
       };
-      this.persMoraleService.createPersMorale(this.persMoraleForm);
+      this.persMoraleService.createpersMorale(this.persMoraleForm);
       this.showSnackbar();
       this.router.navigate(['/admin/forms/pers-morale/pers-morale-list']);
     } else {
@@ -193,24 +184,6 @@ export class PersMoraleAddComponent implements OnInit {
          });
        })
      );
-
-   // this.snapshot = this.task.snapshotChanges().pipe(
-   //   // The file's download URL
-   //   finalize(() => (this.downloadURL = fileRef.getDownloadURL())),
-   //   tap(snap => {
-   //     console.log(snap);
-   //     if (snap.bytesTransferred === snap.totalBytes) {
-   //       // Update firestore on completion
-
-   //       // this.db.collection("photos").add({ path, size: snap.totalBytes });
-   //       // this.downloadURL.subscribe(url=>{if(url){
-   //       //   this.imgDownloadUrl = url;
-   //       // }});
-   //       // this.imgDownloadUrl = path;
-
-   //     }
-   //   })
-   // );
  }
 
  // Determines if the upload task is active

@@ -1,1 +1,104 @@
-<p>pers-morale-view works!</p>
+<div fxLayout="column" fxLayoutAlign="center center" fxFlexAlign="center center" fxLayoutGap="10px" class="loading">
+    <mat-spinner *ngIf="loading"></mat-spinner> 
+</div>
+
+<div
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px" *ngIf="!loading">
+    <mat-card [class.mat-elevation-z10]="true">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div  class='font-size-14' *ngIf="persMoraleView.PhotoUrl">
+                <img [src]="persMoraleView.PhotoUrl" alt="">
+            </div>
+        </div>
+
+        <br>
+
+        <div fxLayout="column" fxLayoutAlign="start start">
+            <div class='font-size-12'>{{ persMoraleView.Created | date:'dd/MM/yyy H:mm:ss'}} </div>
+        </div>
+
+        <br>
+
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='30' class='font-size-13'>Company Name:</div>
+            <div fxFlex='80' class='font-size-14'>{{ persMoraleView.CompanyName }}</div>
+        </div>
+
+        <br>
+
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='30' class='font-size-13'>Nom du Projet:</div>
+            <div fxFlex='70' class='font-size-12'>{{ persMoraleView.ProjectForm }}</div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                NImpot:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ persMoraleView.NImpot }}</div>
+        </div> 
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Objet:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ persMoraleView.Objet }}</div>
+        </div>  
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                SecteurActivite:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ persMoraleView.SecteurActivite }}</div>
+        </div>  
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Branche Activite:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ persMoraleView.BrancheActivite }}</div>
+        </div>  
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                IdNat:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ persMoraleView.IdNat }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Email Entreprise:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ persMoraleView.EmailEntreprise }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Telephone Entreprise:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ persMoraleView.TelephoneEntreprise }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Representant:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ persMoraleView.Name }}</div>
+        </div>  
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Fonction:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ persMoraleView.Function }}</div>
+        </div>  
+
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Nationalite:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ persMoraleView.Nationalite }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                HeadQuarters:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ persMoraleView.HeadQuarters }}</div>
+        </div>
+    </mat-card>
+</div>

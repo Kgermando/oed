@@ -10,11 +10,11 @@ import { PersMorale } from './models/pers-morale';
 })
 export class PersMoraleService {
   userId: string;
-  PersMorale: any;
-  PersMoraleCollection: AngularFirestoreCollection<PersMorale>;
-  PersMoraleInfo: Observable<PersMorale[]>;
+  persMorale: any;
+  persMoraleCollection: AngularFirestoreCollection<PersMorale>;
+  persMoraleInfo: Observable<PersMorale[]>;
 
-   // Pour la methode getOneProduct()
+  // Pour la methode getOneProduct()
   private persMoraleDoc: AngularFirestoreDocument<PersMorale>;
   public persMoraleView: Observable<PersMorale>;
 
@@ -26,26 +26,45 @@ export class PersMoraleService {
       if (user) this.userId = user.uid;
     });
 
-    this.PersMoraleCollection = angularfirestore.collection<PersMorale>("PersMorale");
+    this.persMoraleCollection = angularfirestore.collection<PersMorale>("PersMorale");
   }
 
-  getUserId(): Observable<any> {
+  createpersMorale(persMoraleInfo) {
+    this.persMoraleCollection.add(persMoraleInfo);
+  }
+
+  updatepersMorale(persMoraleInfo, persMoraleId) {
+    this.persMoraleCollection.doc(persMoraleId).update(persMoraleInfo);
+  }
+
+  getPersMorales(): Observable<any> {
+    return new Observable(observer => {
+      this.angularfirestore.collection<PersMorale>("PersMorale").snapshotChanges()
+        .subscribe(Membres => {
+            observer.next(Membres);
+      });
+    })
+  }
+
+  getAllpersMorale(): Observable<any> {
     return new Observable(observer => {
       this.angularfireauth.authState.subscribe(user => {
-        observer.next(user.uid);
+        if (user) {
+          this.userId = user.uid;
+          this.angularfirestore
+            .collection<PersMorale>("PersMorale")
+            .snapshotChanges()
+            .subscribe(persMorale => {
+              observer.next(persMorale);
+            });
+        } else {
+          observer.next(null);
+        }
       });
     });
   }
 
-  createPersMorale(PersMoraleInfo) {
-    this.PersMoraleCollection.add(PersMoraleInfo);
-  }
-
-  updatePersMorale(PersMoraleInfo, PersMoraleId) {
-    this.PersMoraleCollection.doc(PersMoraleId).update(PersMoraleInfo);
-  }
-
-  getPersMoraleByManager(): Observable<any> {
+  getpersMoraleBySupplier(): Observable<any> {
     return new Observable(observer => {
       this.angularfireauth.authState.subscribe(user => {
         if (user) {
@@ -55,8 +74,8 @@ export class PersMoraleService {
               ref.where("managerId", "==", this.userId)
             )
             .snapshotChanges()
-            .subscribe(PersMorale => {
-              observer.next(PersMorale);
+            .subscribe(persMorale => {
+              observer.next(persMorale);
             });
         } else {
           observer.next(null);
@@ -65,16 +84,7 @@ export class PersMoraleService {
     });
   }
 
-  getPersMorale(): Observable<any> {
-    return new Observable(observer => {
-      this.angularfirestore.collection<PersMorale>("PersMorale").snapshotChanges()
-        .subscribe(PersMorale => {
-            observer.next(PersMorale);
-      });
-    })
-  }
-
-  getProfileByManagerId(managerId): Observable<any> {
+  getProfileBymanagerId(managerId): Observable<any> {
     return new Observable(observer => {
       this.angularfirestore
         .collection("Person")
@@ -86,19 +96,19 @@ export class PersMoraleService {
             const id = changes.payload.id;
             return { id, data };
           })
-        ).subscribe(profile => {
+        ).subscribe(profile=>{
           observer.next(profile);
         })
     });
   }
 
-  removePersMoraleByID(id){
+  removepersMoraleByID(id){
     this.angularfirestore.collection("PersMorale").doc(id).delete();
   }
 
-  getPersMoraleByPersMoraleId(id): Observable<any> {
+  getpersMoraleBypersMoraleId(id): Observable<any> {
     return new Observable(observer => {
-      this.PersMoraleCollection
+      this.persMoraleCollection
         .doc(id)
         .snapshotChanges()
         .pipe(
@@ -114,7 +124,7 @@ export class PersMoraleService {
     });
   }
 
-  // Geet one data in database
+  // Get one data in database
   getOneProduct(idPersMorale: string) {
     this.persMoraleDoc = this.angularfirestore.doc<PersMorale>(`PersMorale/${idPersMorale}`);
     return this.persMoraleView = this.persMoraleDoc.snapshotChanges().pipe(map(action => {
@@ -129,4 +139,3 @@ export class PersMoraleService {
     }));
   }
 }
-

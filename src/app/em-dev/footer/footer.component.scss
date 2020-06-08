@@ -1,47 +1,53 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
 
 mat-toolbar {
-  font-family: "Google Sans", Roboto, "Helvetica Neue", sans-serif;
-  background-color: black;
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+  background-color: #000;
+  align-items: center;
   font-size: 14px;
+  height: 100px;
   color: white;
-  margin-bottom: 0;
+  text-align: center;
+  padding-top: 5px;
+}
 
-  .example-icon {
-      padding: 0 14px;
-    }
-    
-    .example-spacer {
-      flex: 1 1 auto;
-    }
-
-  .active-link{
-    color: #18B52B; 
+.menu {
+    display: inline-flex;
+    flex-direction: row;
   }
 
-  .menu {
-    // padding: 5px 20px;
-    text-align: center;
+a {
+  padding-left: 10px;
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  text-decoration: underline;
+}
 
-    a {
-      padding-left: 10px;
-      text-decoration: none;
-      color: white;
-      
-    }
-  }
+i:hover {
+  opacity: 50%;
+}
+
+.active-link {
+  text-decoration: underline;
 }
 
 
 @media screen and (max-width: 960px) {
 
-  p {
-    text-align: center;
-    padding-bottom: 10px;
+
+  mat-toolbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
   }
-}
- 
-.footer-panel {
-  height: 400px;
-  background-color: #000fff;
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+  }
 }

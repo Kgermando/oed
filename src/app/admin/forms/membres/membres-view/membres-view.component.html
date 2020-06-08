@@ -1,1 +1,103 @@
-<p>membres-view works!</p>
+<div fxLayout="column" fxLayoutAlign="center center" fxFlexAlign="center center" fxLayoutGap="10px" class="loading">
+    <mat-spinner *ngIf="loading"></mat-spinner> 
+</div>
+
+<div
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px" *ngIf="!loading">
+    <mat-card [class.mat-elevation-z10]="true">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div  class='font-size-14' *ngIf="membresView.PhotoUrl">
+                <img [src]="membresView.PhotoUrl" alt="">
+            </div>
+        </div>
+
+        <br>
+
+        <div fxLayout="column" fxLayoutAlign="start start">
+            <div class='font-size-12'>{{ membresView.Created | date:'dd/MM/yyy H:mm:ss'}} </div>
+        </div>
+
+        <br>
+
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='30' class='font-size-13'>FullName:</div>
+            <div fxFlex='80' class='font-size-14'>{{ membresView.FullName }}</div>
+        </div>
+
+        <br>
+
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='30' class='font-size-13'>Sexe:</div>
+            <div fxFlex='70' class='font-size-12'>{{ membresView.Sex }}</div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Birthday:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ membresView.Birthday }}</div>
+        </div> 
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                PlaceBirthday:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ membresView.PlaceBirthday }}</div>
+        </div>  
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                EtatCivil:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ membresView.EtatCivil }}</div>
+        </div>  
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                LangueParle:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ membresView.LangueParle }}</div>
+        </div>  
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Adresse:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ membresView.Adresse }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Telephone:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ membresView.Telephone }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Email:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ membresView.Email }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Nationalité:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ membresView.Nationalite }}</div>
+        </div>  
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Province:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ membresView.Province }}</div>
+        </div>  
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Etudes:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ membresView.Etudes }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex='20'  class='font-size-13'>
+                Experience:
+            </div>
+            <div fxFlex='80' class='font-size-12'>{{ membresView.Experience }}</div>
+        </div>
+    </mat-card>
+</div>

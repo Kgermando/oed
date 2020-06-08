@@ -1,19 +1,27 @@
-<div class="footer-panel">
+<!-- <div class="footer-panel">
   
-</div>
+</div> -->
 
 <mat-toolbar>
 
-    <!-- <div class="menu">
-      <a routerLink="emdev/layouts/home" routerLinkActive="active-link">Acceuil</a> -
-      <a routerLink="emdev/layouts/about" routerLinkActive="active-link">A Propos de Nous</a> -
-      <a routerLink="emdev/layouts/contact" routerLinkActive="active-link">Contactez-Nous</a>
-      <a routerLink="emdev/layouts/contact" routerLinkActive="active-link">Forums</a>
-    </div> -->
-    
-    <span class="example-spacer"></span>
+  <div class="menu">
+    <a routerLink="/emdev/layouts/home" routerLinkActive="active-link">Acceuil</a>
+    <a routerLink="/emdev/layouts/about" routerLinkActive="active-link">A Propos de Nous</a>
+    <a routerLink="/emdev/layouts/contact" routerLinkActive="active-link">Contactez-Nous</a>
+    <a routerLink="/emdev/layouts/activites" routerLinkActive="active-link">Activités</a>
+  </div>
 
-    <p>&copy; {{ today | date:'yyyy' }} - Emergence et Developpement</p>
-    
+  <div class="icon">
+    <a href="#" target="blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+    <a href="#" target="blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+    <a href="#" target="blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+    <a href="#" target="blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+    <a href="#" target="blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+    <a href="#" target="blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+  </div>
+
+  <!-- <span class="example-spacer"></span> -->
+
+  <p>&copy; {{ today | date:'yyyy' }} - Emergence et Developpement</p>
 
 </mat-toolbar>

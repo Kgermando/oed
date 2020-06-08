@@ -9,6 +9,7 @@ import { MembresService } from '../services/membres.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Membres } from '../services/models/membres';
 import { nationalite } from 'src/app/shared/db/nation';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-membres-add',
@@ -26,22 +27,15 @@ export class MembresAddComponent implements OnInit {
     Birthday: '',
     PlaceBirthday: '',
     EtatCivil: '',
-    NbreEnfant: null,
     LangueParle: '',
     Adresse: '',
     Telephone: '',
     Email: '',
     Nationalite: '',
     Province: '',
-    Ville: '',
-    TerritoireCheferie: '',
     Etudes: '',
     Experience: '',
-    // Frais: '',
-    // Paye: '',
-    Approuve: false,
     Created: null,
-    managerId: '',
   };
 
   isPreview = false;
@@ -56,75 +50,57 @@ export class MembresAddComponent implements OnInit {
   constructor(
     private storage: AngularFireStorage,
     private db: AngularFirestore,
+    private router: Router,
     private fb: FormBuilder,
     private membresService: MembresService,
     private snackbar: MatSnackBar
   ) {}
 
   ngOnInit() {
-    this.getUserId();
     this.makingaddMembresForm();
-    
   }
   
   makingaddMembresForm() {
     this.addMembresForm = this.fb.group({
-      CalamiteNaturelRecente: ['', Validators.required],
       FullName: ['', Validators.required],
       Sex: ['', Validators.required],
       Birthday: ['', Validators.required],
       PlaceBirthday: ['', Validators.required],
       EtatCivil: ['', Validators.required],
-      NbreEnfant: ['', Validators.required],
-      LangueParle: ['', Validators.required],
-      Adresse: ['', Validators.required],
-      Telephone: ['', Validators.required],
-      Email: ['', Validators.required],
       Nationalite: ['', Validators.required],
-      Province: ['', Validators.required],
-      Ville: ['', Validators.required],
-      TerritoireCheferie: ['', Validators.required],
-      Etudes: ['', Validators.required],
-      Experience: ['', Validators.required],
-      // Frais: ['', Validators.required],
-      Approuve: ['', Validators.required],
+      LangueParle: ['', Validators.required],
+      Province: [''],
+      Adresse: [''],
+      Telephone: ['', Validators.required],
+      Email: [''],
+      Etudes: [''],
+      Experience: [''],
     });
-  }
-
-  getUserId(){
-      this.membresService.getUserId().subscribe(res=>{
-        this.getManagerID = res;
-      })
   }
 
   onSubmit() {
     if (this.addMembresForm.valid) {
-          this.isLoading = true;
-          this.membresInfo = {
-            FullName: this.addMembresForm.value.FullName,
-            Sex: this.addMembresForm.value.Sex,
-            PhotoUrl: this.imgDownloadUrl,
-            Birthday: this.addMembresForm.value.Birthday,
-            PlaceBirthday: this.addMembresForm.value.PlaceBirthday,
-            EtatCivil: this.addMembresForm.value.EtatCivil,
-            LangueParle: this.addMembresForm.value.LangueParle,
-            Adresse: this.addMembresForm.value.Adresse,
-            Telephone: this.addMembresForm.value.Telephone,
-            Email: this.addMembresForm.value.Email,
-            Nationalite: this.addMembresForm.value.Nationalite,
-            Province: this.addMembresForm.value.Province,
-            Ville: this.addMembresForm.value.Ville,
-            TerritoireCheferie: this.addMembresForm.value.TerritoireCheferie,
-            Etudes: this.addMembresForm.value.Etudes,
-            Experience: this.addMembresForm.value.Experience,
-            // Frais: this.addMembresForm.value.Frais,
-            // Paye: 'PAYE',
-            Approuve: this.addMembresForm.value.Approuve,
-            Created: new Date(),
-            managerId: this.getManagerID
-          };
+        this.isLoading = true;
+        this.membresInfo = {
+          FullName: this.addMembresForm.value.FullName,
+          Sex: this.addMembresForm.value.Sex,
+          PhotoUrl: this.imgDownloadUrl,
+          Birthday: this.addMembresForm.value.Birthday,
+          PlaceBirthday: this.addMembresForm.value.PlaceBirthday,
+          Nationalite: this.addMembresForm.value.Nationalite,
+          EtatCivil: this.addMembresForm.value.EtatCivil,
+          LangueParle: this.addMembresForm.value.LangueParle,
+          Province: this.addMembresForm.value.Province,
+          Adresse: this.addMembresForm.value.Adresse,
+          Telephone: this.addMembresForm.value.Telephone,
+          Email: this.addMembresForm.value.Email,
+          Etudes: this.addMembresForm.value.Etudes,
+          Experience: this.addMembresForm.value.Experience,
+          Created: new Date(),
+        };
         this.membresService.createMembres(this.membresInfo);
         this.addMembresForm.reset();
+        this.router.navigate(['/admin/forms/membres/membres-list'])
         this.showSnackbar();
         // console.log(this.membresInfo);
       } else {
@@ -134,7 +110,7 @@ export class MembresAddComponent implements OnInit {
 
 
   showSnackbar() {
-		this.snackbar.open('Formulaires Envoyé!', '', {
+		this.snackbar.open('Formulaires Enregistré!', '', {
       duration: 6000
     });
   }

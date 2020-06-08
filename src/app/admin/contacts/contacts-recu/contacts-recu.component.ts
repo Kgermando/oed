@@ -21,7 +21,6 @@ export class ContactsRecuComponent implements OnInit {
 
   contacts;
 
-
   constructor(private contactService: ContactService,
               // private excelService: ExcelService,
               private router: Router) {}

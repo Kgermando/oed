@@ -7,13 +7,16 @@ import { OpportunityAddComponent } from './opportunity-add/opportunity-add.compo
 import { OpportunityListComponent } from './opportunity-list/opportunity-list.component';
 import { OpportunityEditComponent } from './opportunity-edit/opportunity-edit.component';
 import { OpportunityViewComponent } from './opportunity-view/opportunity-view.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
   declarations: [OpportunityComponent, OpportunityAddComponent, OpportunityListComponent, OpportunityEditComponent, OpportunityViewComponent],
   imports: [
     CommonModule,
-    OpportunityRoutingModule
+    OpportunityRoutingModule,
+
+    SharedModule
   ]
 })
 export class OpportunityModule { }

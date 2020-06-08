@@ -25,7 +25,7 @@
         <div class="hero-text">
           <h2 class="hero-text-title">
               Bienvenue sur la plateforme de <br>
-              <span>l'organisation pour l'Emergence et le Développement</span> 
+              <span>l'Organisation pour l'Emergence <br> et le Développement</span> 
           </h2>
           <p class="hero-text-content">
             Loin d’avoir une connotation politique, encore moins des intérêts égoïstes, 
@@ -86,7 +86,6 @@
     <h2 class="vision-title">Notre vision?</h2>
 
     <div class="vision-content">
-
       <div class="card_grid" fxLayout="row wrap"
           fxLayout.lt-sm="column"
           fxLayoutGap="4%"
@@ -112,8 +111,6 @@
           Plus
         </button>
       </div>
-   
-    
   </section>
 
   <section class="cta-section"> 
@@ -127,16 +124,16 @@
       </button>
 		</div>
   </section>
-  
-  <section class="card-home" 
+
+  <!-- <section class="card-home-desktop"
     fxLayout="column"
-    fxLayoutAlign="flex-start">
+    fxLayoutAlign="center center">
     <ng-container *ngFor="let conf of conference">
-      <mat-card fxLayoutGap="20px" fxLayout="row" fxFlex.lt-sm="column" >
-        <div class="card-img" fxFlex.sm="40">
+      <mat-card fxLayoutGap="20px" fxLayout="row" >
+        <div class="card-img" fxFlex.sm="50">
           <img [src]="conf.img" mat-card-image alt="conference Emergence et developpement">
         </div>
-        <div class="card-content" fxFlex.sm="60">
+        <div class="card-content" fxFlex.sm="50">
           <h3 class="card-header">{{conf.title}}</h3>
           <p class="card-text">
             {{conf.content}}
@@ -145,4 +142,22 @@
       </mat-card>
     </ng-container>
   </section>
+
+  <section class="card-home-mobile" 
+    fxLayout="column"
+    fxLayoutAlign="center center">
+    <ng-container *ngFor="let conf of conference">
+      <mat-card fxLayoutGap="20px" fxLayout="column" >
+        <div class="card-img">
+          <img [src]="conf.img" mat-card-image alt="conference Emergence et developpement">
+        </div>
+        <div class="card-content">
+          <h3 class="card-header">{{conf.title}}</h3>
+          <p class="card-text">
+            {{conf.content}}
+          </p>
+        </div>
+      </mat-card>
+    </ng-container>
+  </section> -->
 </div>

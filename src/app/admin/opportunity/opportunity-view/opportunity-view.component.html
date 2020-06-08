@@ -1,1 +1,49 @@
-<p>opportunity-view works!</p>
+<div fxLayout="column" fxLayoutAlign="center center" fxFlexAlign="center center" fxLayoutGap="10px" class="loading">
+    <mat-spinner *ngIf="loading"></mat-spinner> 
+</div>
+
+
+<div
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px" *ngIf="!loading">
+    <mat-card [class.mat-elevation-z10]="true">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div  class='font-size-14'>
+                <img [src]="opportunityView.PhotoUrl" alt="">
+            </div>
+        </div>
+
+        <br>
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
+            <div class='font-size-12'>{{ opportunityView.Created | date:'dd/MM/yyy H:mm:ss'}} </div>
+        </div>
+
+        <br>
+    
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <!-- <div fxFlex='20' class='font-size-12'>
+                Titre:
+            </div> -->
+            <div class='font-size-14'>{{ opportunityView.Title }}</div>
+        </div>
+
+        <br>
+
+        <div fxLayout="column" fxLayoutAlign="start start">
+            <div fxFlex='60'  class='font-size-13'>
+                Description:
+            </div>
+            <div fxFlex='40' class='font-size-12'>{{ opportunityView.Description }}</div>
+        </div>
+
+        <br>
+
+        <div fxLayout="column" fxLayoutAlign="start start">
+            <div fxFlex='60'  class='font-size-13'>
+                Content:
+            </div>
+            <div fxFlex='40' class='font-size-12'>{{ opportunityView.Content }}</div>
+        </div>  
+    </mat-card>
+</div>

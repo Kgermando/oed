@@ -21,7 +21,8 @@
         font-family: "Google Sans", Roboto, sans-serif;
         display: flex;
         justify-content: center;
-        flex-direction: column;
+        flex-direction: column-reverse;
+        
         margin: 2rem;
     
         .contact_1 {
@@ -66,6 +67,7 @@
             // height: 100%;
             display: flex;
             justify-content: center;
+            
         
             h2 {
                 font-size: 30px;

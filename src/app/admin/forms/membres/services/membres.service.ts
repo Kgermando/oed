@@ -11,13 +11,13 @@ import { Membres } from './models/membres';
 export class MembresService {
 
   userId: string;
-  Membres: any;
-  MembresCollection: AngularFirestoreCollection<Membres>;
-  MembresInfo: Observable<Membres[]>;
+  membres: any;
+  membresCollection: AngularFirestoreCollection<Membres>;
+  membresInfo: Observable<Membres[]>;
 
-   // Pour la methode getOneProduct()
-  private envDoc: AngularFirestoreDocument<Membres>;
-  public envView: Observable<Membres>;
+  // Pour la methode getOneProduct()
+  private membreseDoc: AngularFirestoreDocument<Membres>;
+  public membresView: Observable<Membres>;
 
   constructor(
     private angularfireauth: AngularFireAuth,
@@ -27,23 +27,16 @@ export class MembresService {
       if (user) this.userId = user.uid;
     });
 
-    this.MembresCollection = angularfirestore.collection<Membres>("Membres");
+    this.membresCollection = angularfirestore.collection<Membres>("Membres");
   }
 
-  getUserId(): Observable<any> {
-    return new Observable(observer => {
-      this.angularfireauth.authState.subscribe(user => {
-        observer.next(user.uid);
-      });
-    });
+
+  createMembres(membresInfo) {
+    this.membresCollection.add(membresInfo);
   }
 
-  createMembres(MembresInfo) {
-    this.MembresCollection.add(MembresInfo);
-  }
-
-  updateMembres(MembresInfo, MembresId) {
-    this.MembresCollection.doc(MembresId).update(MembresInfo);
+  updateMembres(membresInfo, membresId) {
+    this.membresCollection.doc(membresId).update(membresInfo);
   }
 
   getMembresByManager(): Observable<any> {
@@ -65,7 +58,7 @@ export class MembresService {
       });
     });
   }
-
+ 
   getMembres(): Observable<any> {
     return new Observable(observer => {
       this.angularfirestore.collection<Membres>("Membres").snapshotChanges()
@@ -73,6 +66,24 @@ export class MembresService {
             observer.next(Membres);
       });
     })
+  }
+
+  getAllMembres(): Observable<any> {
+    return new Observable(observer => {
+      this.angularfireauth.authState.subscribe(user => {
+        if (user) {
+          this.userId = user.uid;
+          this.angularfirestore
+            .collection<Membres>("Membres")
+            .snapshotChanges()
+            .subscribe(persMorale => {
+              observer.next(persMorale);
+            });
+        } else {
+          observer.next(null);
+        }
+      });
+    });
   }
 
   getProfileByManagerId(managerId): Observable<any> {
@@ -99,7 +110,7 @@ export class MembresService {
 
   getMembresByMembresId(id): Observable<any> {
     return new Observable(observer => {
-      this.MembresCollection
+      this.membresCollection
         .doc(id)
         .snapshotChanges()
         .pipe(
@@ -117,8 +128,8 @@ export class MembresService {
 
   // Geet one data in database
   getOneProduct(idMembres: string) {
-    this.envDoc = this.angularfirestore.doc<Membres>(`Membres/${idMembres}`);
-    return this.envView = this.envDoc.snapshotChanges().pipe(map(action => {
+    this.membreseDoc = this.angularfirestore.doc<Membres>(`Membres/${idMembres}`);
+    return this.membresView = this.membreseDoc.snapshotChanges().pipe(map(action => {
       if (action.payload.exists === false) {
         return null;
       } else {

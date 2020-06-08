@@ -14,7 +14,6 @@ export interface PersMorale {
     TelephoneEntreprise?: string;
     EmailEntreprise?: string;
     Name?: string;  // Responsable
-    Sex?: string;
     Nationalite?: string;
     Function?: string;
     Phone?: string;

@@ -1,1 +1,138 @@
-<p>opportunity-edit works!</p>
+<form [formGroup]="addOpportunityForm" id="file-upload-form" class="uploader">
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxLayoutGap="30px"
+      class="mt-100"
+    >
+      <mat-card [class.mat-elevation-z10]="true">
+        <div
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          fxLayoutGap="30px"
+          class="px-150">
+  
+          <div
+            class="dropzone"
+            DropZone
+            (hovered)="toggleHover($event)"
+            (dropped)="startUpload($event)"
+            [class.hovering]="isHovering"
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            fxLayoutGap="10px"
+            style="width: 150%;"
+            class="pt-20">
+            <input
+              id="file-upload"
+              type="file"
+              name="fileUpload"
+              accept="image/*"
+              (change)="startUpload($event.target.files)"/>
+            <label for="file-upload" id="file-drag">
+              <img id="file-image" src="#" alt="Preview" class="hidden" />
+              <div id="start">
+                <i class="fa fa-upload" aria-hidden="true"></i>
+                <div>Select a file or drag here</div>
+                <div id="notimage" class="hidden">Please select an image</div>
+                <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+              </div>
+              <div id="response" class="hidden">
+                <div id="messages"></div>
+                <div *ngIf="percentage | async as pct">
+                  <progress
+                    class="progress is-info"
+                    [value]="pct"
+                    max="100"
+                    id="file-progress">
+                    <span>{{ pct }}</span>%
+                  </progress>
+                </div>
+              </div>
+            </label>
+          </div>
+  
+          <div *ngIf="percentage | async as pct">
+            <progress class="progress is-info" [value]="pct" max="100">
+            </progress>
+  
+            {{ pct | number }}%
+          </div>
+  
+          <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  placeholder="Title"
+                  formControlName="Title"/>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  placeholder="Description"
+                  formControlName="Description"/>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Content</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  placeholder="Content"
+                  formControlName="Content"/>
+              </mat-form-field>
+            </div>
+  
+            <div>
+              <div>
+                <button
+                  type="submit"
+                  (click)="onSubmit()"
+                  mat-raised-button
+                  color="primary"
+                  [disabled]="!addOpportunityForm.valid">
+                  New Actualite
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+  
+    </div>
+  </form>
+  
+<div *ngIf="isPreview">
+    <mat-card [class.mat-elevation-z8]="true" class="w-350 h-440 scrollable-content">
+        <div *ngIf="snapshot | async as snap" fxLayout="row" fxLayoutAlign="center center" class='mb-16 w-280 h-200'>
+            <div *ngIf="downloadURL | async as url">
+                <img [src]="url"  />
+            </div>
+        </div>
+        
+        <div  class='pt-12'>
+            <div fxLayout="row" fxLayoutAlign="center center" class='pb-12'>
+                <div class='font-size-20'><span class='secondary-text-color cursor-pointer'> {{ addOpportunityForm.value.Title }}</span></div>
+            </div>
+        </div>
+    
+        <mat-card-content class='h-100'>
+    
+        <div  class='py-12'>
+            <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="8px">
+                <div class='font-size-16'><span class='accepted-color'>{{ addOpportunityForm.value.Description }}</span></div>
+            </div>
+        </div>
+        </mat-card-content>
+    
+    </mat-card>
+
+</div>

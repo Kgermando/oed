@@ -1,0 +1,49 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxFlexAlign="center center" fxLayoutGap="10px" class="loading">
+    <mat-spinner *ngIf="loading"></mat-spinner> 
+</div>
+
+<div
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px" *ngIf="!loading">
+    <mat-card [class.mat-elevation-z10]="true">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div  class='font-size-14' *ngIf="actualiteView.PhotoUrl">
+                <img [src]="actualiteView.PhotoUrl" alt="">
+            </div>
+        </div>
+
+        <br>
+
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
+            <div class='font-size-12'>{{ actualiteView.Created | date:'dd/MM/yyy H:mm:ss'}} </div>
+        </div>
+
+        <br>
+    
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <!-- <div fxFlex='20' class='font-size-12'>
+                Titre:
+            </div> -->
+            <div fxFlex='80' class='font-size-14'>{{ actualiteView.Title }}</div>
+        </div>
+
+        <br>
+
+        <div fxLayout="column" fxLayoutAlign="start start">
+            <div fxFlex='60' class='font-size-13'>
+                Description:
+            </div>
+            <div fxFlex='40' class='font-size-12'>{{ actualiteView.Description }}</div>
+        </div>
+
+        <br>
+
+        <div fxLayout="column" fxLayoutAlign="start start">
+            <div fxFlex='60'  class='font-size-13'>
+                Content:
+            </div>
+            <div fxFlex='40' class='font-size-12'>{{ actualiteView.Content }}</div>
+        </div>  
+    </mat-card>
+</div>
