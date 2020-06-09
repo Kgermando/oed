@@ -70,7 +70,7 @@
                   formControlName="Title"/>
               </mat-form-field>
             </div>
-            <div>
+            <!-- <div>
               <mat-form-field appearance="outline">
                 <mat-label>Description</mat-label>
                 <input
@@ -79,16 +79,17 @@
                   placeholder="Description"
                   formControlName="Description"/>
               </mat-form-field>
-            </div>
+            </div> -->
             <div>
-              <mat-form-field appearance="outline">
+              <!-- <mat-form-field appearance="outline">
                 <mat-label>Content</mat-label>
                 <input
                   type="text"
                   matInput
                   placeholder="Content"
                   formControlName="Content"/>
-              </mat-form-field>
+              </mat-form-field> -->
+              <ngx-editor formControlName="Content"></ngx-editor>
             </div>
   
             <div>
@@ -128,7 +129,7 @@
       
             <div  class='py-12'>
               <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="8px">
-                <div class='font-size-16'><span class='accepted-color'>{{ addActualiteForm.value.Description }}</span></div>
+                <!-- <div class='font-size-16'><span class='accepted-color'>{{ addActualiteForm.value.Description }}</span></div> -->
                 <!-- <div class='font-size-16'>Minimum Order- <span class='rejected-color'>{{ addActualiteForm.value.productquantity }}</span></div> -->
                 <!-- <div class='font-size-12 word-break-all'>{{ addProductForm.value.productDescription }}</div> -->
               </div>

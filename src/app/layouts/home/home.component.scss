@@ -105,6 +105,10 @@
 			}
 		}
 
+		.carousel-item img {
+			height: 300px;
+		}
+
 		.card-home-desktop {
 			display: none;
 		}
@@ -236,6 +240,11 @@
 	}
 }
 
+.carousel-item h4 {
+	font-size: 20px;
+}
+
+
 span:hover {
 	color: #ff0000;
 	font-weight: 800;
@@ -247,14 +256,14 @@ span:hover {
 	line-height: 1.1;
 }
 
-.vision-content {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-}
+// .vision-content {
+// 	display: flex;
+// 	flex-direction: row;
+// 	justify-content: center;
+// }
 
 .card_grid {
-	margin-left: 4%;
+	// margin-left: 4%;
 
     .example-card {
 	  margin-bottom: 15px;
@@ -264,7 +273,7 @@ span:hover {
 	  box-shadow: none !important;
 
       .image_avatar {
-        // width: 100%;
+        width: 200px;
         height: 200px;
       }
     }

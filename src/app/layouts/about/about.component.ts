@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { team } from 'src/app/shared/db/team';
 
 @Component({
   selector: 'app-about',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
+  team$ = team;
   constructor() { }
 
   ngOnInit(): void {

@@ -76,19 +76,22 @@
                 <input
                   type="text"
                   matInput
+                  #input maxlength="50"
                   placeholder="Description"
                   formControlName="Description"/>
+                  <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
               </mat-form-field>
             </div>
             <div>
-              <mat-form-field appearance="outline">
+              <!-- <mat-form-field appearance="outline">
                 <mat-label>Content</mat-label>
                 <input
                   type="text"
                   matInput
                   placeholder="Content"
                   formControlName="Content"/>
-              </mat-form-field>
+              </mat-form-field> -->
+              <ngx-editor formControlName="Content"></ngx-editor>
             </div>
   
             <div>

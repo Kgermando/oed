@@ -11,7 +11,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 
 import { MatCarouselModule } from '@ngmodule/material-carousel';
-import { NgxEditorModule } from 'ngx-editor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,7 +43,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
     NgbModule,
     MatCarouselModule.forRoot(),
-    NgxEditorModule
     
   ],
   providers: [AuthService],

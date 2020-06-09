@@ -40,20 +40,11 @@ export class OpportunityService {
 
   getAllOpportunity(): Observable<any> {
     return new Observable(observer => {
-      this.angularfireauth.authState.subscribe(user => {
-        if (user) {
-          this.userId = user.uid;
-          this.angularfirestore
-            .collection<Opportunity>("Opportunity")
-            .snapshotChanges()
-            .subscribe(Opportunity => {
-              observer.next(Opportunity);
-            });
-        } else {
-          observer.next(null);
-        }
+      this.angularfirestore.collection<Opportunity>("Opportunity", ref => ref.orderBy('Created', 'desc')).snapshotChanges()
+        .subscribe(Membres => {
+            observer.next(Membres);
       });
-    });
+    })
   }
 
   getOpportunityBySupplier(): Observable<any> {

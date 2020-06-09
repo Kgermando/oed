@@ -70,7 +70,6 @@ export class ContactsViewComponent implements OnInit {
     getFiche(id) {
       this.contactService.getCollection$(ref => ref.where('id', '==' , id)).subscribe(fiches => {
         this.updateFiche = fiches[0];
-
         this.contactFG.patchValue({
           FullName: this.updateFiche.FullName,
           Telephone: this.updateFiche.Telephone,
@@ -89,7 +88,7 @@ export class ContactsViewComponent implements OnInit {
   // Submit data on database
   update() {
     if (this.contactFG.valid) {
-      // this.loading = true;
+      this.loading = true;
       this.setFicheData(this.contactFG.value);
       // this.contact.Confirmation = "NON LU"
       this.contactService.update(this.updateFiche).then(res => {

@@ -51,6 +51,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { NgxEditorModule } from 'ngx-editor';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -108,7 +110,10 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     HttpClientModule,
 
     NgbModule,
-    MatCarouselModule
+    MatCarouselModule,
+
+    NgxEditorModule,
+    NgxPaginationModule
 
   ],
   exports: [
@@ -162,7 +167,10 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     
 
     NgbModule,
-    MatCarouselModule
+    MatCarouselModule,
+
+    NgxEditorModule,
+    NgxPaginationModule
     // Pipes
  
 

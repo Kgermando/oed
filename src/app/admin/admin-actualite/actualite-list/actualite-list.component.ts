@@ -41,7 +41,7 @@ export class ActualiteListComponent implements OnInit {
  
 
   addProductClick(){
-    this.router.navigate(['/admin/opportunity/opportunity-add']);
+    this.router.navigate(['/admin/activity/actu-add']);
   }
 
   removeProduct(id){
@@ -49,11 +49,11 @@ export class ActualiteListComponent implements OnInit {
   }
  
   view(id) {
-    this.router.navigate(['/admin/opportunity/opportunity-view', id]);
+    this.router.navigate(['/admin/activity/actu-view', id]);
   }
 
   edit(id) {
-    this.router.navigate(['/admin/opportunity/opportunity-edit', id]);
+    this.router.navigate(['/admin/activity/actu-edit', id]);
   }
 
 

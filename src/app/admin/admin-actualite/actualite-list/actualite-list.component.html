@@ -18,7 +18,7 @@
       <ng-container matColumnDef="edit" >
         <mat-header-cell *matHeaderCellDef> Modifier </mat-header-cell>
         <mat-cell *matCellDef="let element" class="cursor-pointer">
-            <a (click)="removeProduct(element.id)">
+            <a (click)="edit(element.id)">
                 <mat-icon>edit</mat-icon>
             </a> 
         </mat-cell>

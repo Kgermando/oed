@@ -21,7 +21,7 @@ export class MembresListComponent implements OnInit {
   constructor(private persMoraleService: MembresService, private router: Router) {}
 
   ngOnInit() {
-    this.persMoraleService.getMembres().subscribe(
+    this.persMoraleService.getAllMembres().subscribe(
       list => {
           const persMorale = list.map(item => {
           return {

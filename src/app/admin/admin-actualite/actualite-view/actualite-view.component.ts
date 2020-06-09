@@ -12,7 +12,6 @@ import { CustomerUserInformation } from 'src/app/auth/services/models/user';
 })
 export class ActualiteViewComponent implements OnInit {
 
-  actualiteData: Actualite;
   actualiteView: Actualite = {};
 
   managerInfo: CustomerUserInformation;

@@ -21,7 +21,7 @@ export class PersMoraleListComponent implements OnInit {
   constructor(private persMoraleService: PersMoraleService, private router: Router) {}
 
   ngOnInit() {
-    this.persMoraleService.getAllpersMorale().subscribe(
+    this.persMoraleService.getAllPersMorales().subscribe(
       list => {
           const persMorale = list.map(item => {
           return {

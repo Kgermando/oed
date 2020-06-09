@@ -50,24 +50,15 @@
     flex: 1 1 auto;
   }
   
-  .active-link{
-    color: #fff;
-    background-color: #2E4F9F;
-  }
-
-  // .active{
-  //   background-color: #2E4F9F;
-  // }
-  
   img {
     width: 70px; 
     height: 70px;
   }
-  
-  // a :hover {
-  //   text-decoration: none;
-  //   color: #18B52B;
-  // }
+
+  .active-link {
+    color: #fff;
+    background-color: #2E4F9F;
+  }
   
   
   @media screen and (max-width: 600px) {

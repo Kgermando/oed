@@ -3,6 +3,7 @@ import { nationalite } from 'src/app/shared/db/nation';
 import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
 import { vision } from 'src/app/shared/db/vision';
 import { conference } from 'src/app/shared/db/conference';
+import { home } from 'src/app/shared/db/home';
 
 @Component({
   selector: 'app-home',
@@ -17,11 +18,15 @@ export class HomeComponent implements OnInit {
   
   conference = conference;
 
+  home$ = home;
+
   slides = [
     {'image':'../../../assets/img/hero-slider/1.jpg'},
     {'image':'../../../assets/img/hero-slider/2.jpg'},
     {'image':'../../../assets/img/hero-slider/3.jpg'}
   ]
+
+
 
   constructor() { }
 

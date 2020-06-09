@@ -3,7 +3,6 @@
 </div>
 <div class="about-content">
     <mat-accordion>
-
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <h4>0.	MOTIVATION</h4>
@@ -184,71 +183,31 @@
 </div>
 
 
-
-
-<!-- <div class="card_grid"
+<div class="header">
+    <h3>Notre Equipe</h3>
+</div>
+<div class="card_grid"
     fxLayout="row wrap"
     fxLayout.lt-sm="column"
-    fxLayoutGap="8%"
+    fxLayoutGap="4%"
     fxLayoutAlign="flex-start">
-
-    <ng-container *ngFor="let product of [1]">
-        <mat-card class="example-card" fxFlex="0 1 calc(33.3% - 8%)" fxFlex.lt-md="0 1 calc(50% - 8%)" fxFlex.lt-sm="100%">
-        <img class="image_avatar" mat-card-image src="../../../assets/img/person/jacque.jpg" alt="Photo Fast Smart">
-        <mat-card-content>
-            <mat-card-title>{{ product.Title }}</mat-card-title>
-            <p>
-                {{ product.Description }}
-            </p>
-        </mat-card-content>
-        <mat-card-actions>
-            <button class="add_panier" mat-raised-button color="accent" matTooltip="Ajoutez au panier" >
-            <mat-icon aria-hidden="false" aria-label="Fast Smart panier cart">shopping_cart</mat-icon>
-            </button>
-        </mat-card-actions>
+    <ng-container *ngFor="let team of team$">
+        <mat-card class="example-card" fxFlex="0 1 calc(33.3% - 4%)" fxFlex.lt-md="0 1 calc(50% - 8%)" fxFlex.lt-sm="100%">
+            <div class="wrapper">
+                <h1></h1>
+                <div class="team">
+                    <div class="team_member">
+                        <div class="team_img">
+                            <img [src]="team.img" alt="Organisation pour l'Emergence et le Developpement">
+                        </div>
+                        <h3>{{ team.nom }}</h3>
+                        <p class="role">{{ team.grade }}</p>
+                        <p>
+                            {{ team.content }}.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </mat-card>
     </ng-container>
-</div>  -->
-
-<mat-card>
-    <div class="wrapper">
-        <h1>Our Team</h1>
-        <div class="team">
-            <div class="team_member">
-                <div class="team_img">
-                <img src="../../../assets/img/person/jacque.jpg" alt="Team_image">
-                </div>
-                <h3>Tshisumpa Jacques</h3>
-                <p class="role">Co fondateur de OED</p>
-                <p>
-                    Expert en entrepreneuriat et création d'entreprise, et a contribué dans la création 
-                    et le développement des plusieurs sociétés dont la MNA Investment & Holding dont il 
-                    est actuellement le PDG.
-                </p>
-            </div>
-            <!-- <div class="team_member">
-                <div class="team_img">
-                <img src="https://i.imgur.com/jQj1I8E.png" alt="Team_image">
-                </div>
-                <h3>Rosie Meg</h3>
-                <p class="role">Tester</p>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quaerat tempora, 
-                    voluptatum quas facere dolorum aut cumque nihil nulla harum nemo distinctio
-                    quam blanditiis dignissimos.
-                </p>
-            </div>
-            <div class="team_member">
-                <div class="team_img">
-                <img src="https://i.imgur.com/2Necikc.png" alt="Team_image">
-                </div>
-                <h3>Alex Wood</h3>
-                <p class="role">Support Lead</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quaerat tempora, 
-                    voluptatum quas facere dolorum aut cumque nihil nulla harum nemo distinctio quam 
-                    blanditiis dignissimos.
-                </p>
-            </div> -->
-        </div>
-    </div>
-</mat-card>
+</div> 

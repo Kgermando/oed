@@ -20,7 +20,7 @@ export class ActualiteEditComponent implements OnInit {
   actualiteInfo: Actualite = {
     Title:'',
     PhotoUrl:'',
-    Description:'',
+    // Description:'',
     Content:'',
     Created: null,
     managerId: '',
@@ -52,7 +52,7 @@ export class ActualiteEditComponent implements OnInit {
   makingAddActualiteForm() {
     this.addActualiteForm = this.fb.group({
       Title:  [''],
-      Description: [''],
+      // Description: [''],
       Actualitequantity: [''],
       Content: [''],
     });
@@ -63,7 +63,7 @@ export class ActualiteEditComponent implements OnInit {
       this.isLoading = true;
       this.actualiteInfo = {
       Title: this.addActualiteForm.value.Title,
-      Description: this.addActualiteForm.value.Description,
+      // Description: this.addActualiteForm.value.Description,
       Content: this.addActualiteForm.value.Content,
       PhotoUrl: this.getImageUrl(),
       Created: new Date(),
@@ -113,8 +113,8 @@ export class ActualiteEditComponent implements OnInit {
     }
   }
 
-  getActivityby(managerId) {
-    this.actualiteService.getProfileBymanagerId(managerId).subscribe(product => {
+  getActivityby(id) {
+    this.actualiteService.getProfile(id).subscribe(product => {
       this.patchData(product.data);
       this.actualiteInfo = product.data;
     });
@@ -124,7 +124,7 @@ export class ActualiteEditComponent implements OnInit {
   patchData(actualite: Actualite) {
     this.addActualiteForm.patchValue({
       Title: actualite.Title,
-      Description: actualite.Description,
+      // Description: actualite.Description,
       Content: actualite.Content
     });
   }

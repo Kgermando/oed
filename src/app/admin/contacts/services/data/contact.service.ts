@@ -47,6 +47,15 @@ import { Contact } from '../models/contact';
         console.log(error);
       }));
     }
+
+    getAllContact(): Observable<any> {
+      return new Observable(observer => {
+        this.afs.collection<Contact>("Contacts", ref => ref.orderBy('Created', 'desc')).snapshotChanges()
+          .subscribe(Membres => {
+              observer.next(Membres);
+        });
+      })
+    }
   
     getCollection$(ref?: QueryFn): Observable<Contact[]> {
       return this.afs.collection<Contact>(this.path, ref)

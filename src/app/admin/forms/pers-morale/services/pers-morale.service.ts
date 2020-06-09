@@ -37,31 +37,13 @@ export class PersMoraleService {
     this.persMoraleCollection.doc(persMoraleId).update(persMoraleInfo);
   }
 
-  getPersMorales(): Observable<any> {
+  getAllPersMorales(): Observable<any> {
     return new Observable(observer => {
       this.angularfirestore.collection<PersMorale>("PersMorale").snapshotChanges()
         .subscribe(Membres => {
             observer.next(Membres);
       });
     })
-  }
-
-  getAllpersMorale(): Observable<any> {
-    return new Observable(observer => {
-      this.angularfireauth.authState.subscribe(user => {
-        if (user) {
-          this.userId = user.uid;
-          this.angularfirestore
-            .collection<PersMorale>("PersMorale")
-            .snapshotChanges()
-            .subscribe(persMorale => {
-              observer.next(persMorale);
-            });
-        } else {
-          observer.next(null);
-        }
-      });
-    });
   }
 
   getpersMoraleBySupplier(): Observable<any> {

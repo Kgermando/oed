@@ -27,7 +27,7 @@ export class ContactsRecuComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.contactService.getProductBySupplier().subscribe(
+    this.contactService.getAllContact().subscribe(
       list => {
           const contacts = list.map(item => {
           return {

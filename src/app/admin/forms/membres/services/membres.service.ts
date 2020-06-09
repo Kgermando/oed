@@ -59,7 +59,8 @@ export class MembresService {
     });
   }
  
-  getMembres(): Observable<any> {
+  // Recupere tous les donnees
+  getAllMembres(): Observable<any> {
     return new Observable(observer => {
       this.angularfirestore.collection<Membres>("Membres").snapshotChanges()
         .subscribe(Membres => {
@@ -68,23 +69,6 @@ export class MembresService {
     })
   }
 
-  getAllMembres(): Observable<any> {
-    return new Observable(observer => {
-      this.angularfireauth.authState.subscribe(user => {
-        if (user) {
-          this.userId = user.uid;
-          this.angularfirestore
-            .collection<Membres>("Membres")
-            .snapshotChanges()
-            .subscribe(persMorale => {
-              observer.next(persMorale);
-            });
-        } else {
-          observer.next(null);
-        }
-      });
-    });
-  }
 
   getProfileByManagerId(managerId): Observable<any> {
     return new Observable(observer => {

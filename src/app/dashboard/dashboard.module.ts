@@ -7,10 +7,11 @@ import { ProfileUpdateComponent } from './profile-update/profile-update.componen
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard.component';
 import { ProfileOpportunityComponent } from './profile-opportunity/profile-opportunity.component';
+import { ProfileOpportunityDetailComponent } from './profile-opportunity-detail/profile-opportunity-detail.component';
 
 
 @NgModule({
-  declarations: [ProfileComponent, ProfileUpdateComponent, DashboardComponent, ProfileOpportunityComponent],
+  declarations: [ProfileComponent, ProfileUpdateComponent, DashboardComponent, ProfileOpportunityComponent, ProfileOpportunityDetailComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

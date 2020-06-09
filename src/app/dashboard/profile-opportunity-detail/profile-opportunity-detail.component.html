@@ -1,0 +1,19 @@
+
+<div class="container" *ngIf="loading">
+    <div class="d-flex justify-content-center">     
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<div class="container" *ngIf="!loading">
+    <div class="card mb-3">
+        <img [src]="opportunityView.PhotoUrl" class="card-img-top" alt="Image OED">
+        <div class="card-body">
+          <h4 class="card-title">{{ opportunityView.Title }}</h4>
+          <p class="card-text"><small class="text-muted">{{ opportunityView.Created }} </small></p>
+          <p class="card-text">{{ opportunityView.Content }} </p>
+        </div>
+    </div>
+</div>
+
+<!-- <div [innerHTML]="opportunityView.Content"></div> -->

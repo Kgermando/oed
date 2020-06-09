@@ -41,20 +41,12 @@ export class ActualiteService {
 
   getAllActualite(): Observable<any> {
     return new Observable(observer => {
-      this.angularfireauth.authState.subscribe(user => {
-        if (user) {
-          this.userId = user.uid;
-          this.angularfirestore
-            .collection<Actualite>("Actualite")
-            .snapshotChanges()
-            .subscribe(Actualite => {
-              observer.next(Actualite);
-            });
-        } else {
-          observer.next(null);
-        }
+      this.angularfirestore.collection<Actualite>("Actualite", ref => ref.orderBy('Created', 'desc'))
+        .snapshotChanges()
+        .subscribe(Actualite => {
+            observer.next(Actualite);
       });
-    });
+    })
   }
 
   getActualiteBySupplier(): Observable<any> {
@@ -77,6 +69,26 @@ export class ActualiteService {
     });
   }
 
+  // Recupere les donnees par id
+  getProfile(id): Observable<any> {
+    return new Observable(observer => {
+      this.angularfirestore
+        .collection("Actualite")
+        .doc(id)
+        .snapshotChanges()
+        .pipe(
+          map(changes => {
+            const data = changes.payload.data();
+            const id = changes.payload.id;
+            return { id, data };
+          })
+        ).subscribe(profile=>{
+          observer.next(profile);
+        })
+    });
+  }
+
+  // Recupere les donnees par users donc uniquement celui qui a remplit
   getProfileBymanagerId(managerId): Observable<any> {
     return new Observable(observer => {
       this.angularfirestore

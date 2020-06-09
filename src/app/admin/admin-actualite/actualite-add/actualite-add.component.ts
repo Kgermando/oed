@@ -20,7 +20,7 @@ export class ActualiteAddComponent implements OnInit {
   actualiteInfo: Actualite = {
     Title:'',
     PhotoUrl:'',
-    Description:'',
+    // Description:'',
     Content:'',
     Created: null,
     managerId: '',
@@ -47,7 +47,7 @@ export class ActualiteAddComponent implements OnInit {
   makingAddActualiteForm() {
     this.addActualiteForm = this.fb.group({
       Title:  [''],
-      Description: [''],
+      // Description: [''],
       Actualitequantity: [''],
       Content: [''],
     });
@@ -58,7 +58,7 @@ export class ActualiteAddComponent implements OnInit {
       this.isLoading = true;
       this.actualiteInfo = {
       Title: this.addActualiteForm.value.Title,
-      Description: this.addActualiteForm.value.Description,
+      // Description: this.addActualiteForm.value.Description,
       Content: this.addActualiteForm.value.Content,
       PhotoUrl: this.imgDownloadUrl,
       Created: new Date(),
