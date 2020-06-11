@@ -4,7 +4,7 @@ export const team = [
         img: '../../../assets/img/person/1.jpg',
         nom: 'Tshisumpa Jacques',
         grade: "Membre de l'OED",
-        content: "Expert en entrepreneuriat et création d'entreprise, et a contribué dans la création et le développement des plusieurs sociétés dont la MNA Investment & Holding dont il est actuellement le PDG"
+        content: "Expert en banque et finances, Expert en conception, élaboration, gestion, suivi et évaluation des projets, Expert en entrepreneuriat et création des entreprises."
     },
     {   
         id: 2,

@@ -21,9 +21,6 @@ export class UsersListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  Persons;
-
-  Persons$: Observable<Person[]>;
 
   constructor(private authService: AuthService,
               private PersonService: PersonService,
@@ -31,23 +28,21 @@ export class UsersListComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.Persons$ = this.authService.getAllUsers();
+    // this.Persons$ = this.authService.getAllUsers();
 
-    this.PersonService.getProductBySupplier().subscribe(
+    this.PersonService.getAllPerson().subscribe(
       list => {
-          const Persons = list.map(item => {
+          const persons = list.map(item => {
           return {
             id: item.payload.doc.id,
             ...item.payload.doc.data()
           }
         });
         // console.log(products)
-        this.dataSource = new MatTableDataSource(Persons);
+        this.dataSource = new MatTableDataSource(persons);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-  })
-
-
+    })
   }
 
   view(uid) {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import { UserInformation, CustomerUserInformation, Person } from '../models/user';
 import { FormGroup } from '@angular/forms';
@@ -16,11 +16,8 @@ import { switchMap } from 'rxjs/operators';
 export class AuthService {
 
   user$: Observable<Person>;
-  users$: Observable<Person[]>;
   // start with no user
   authState: any = null;
-
-  usersCollection: AngularFirestoreCollection<Person>;
 
   constructor(private angularfireauth: AngularFireAuth,
     private angularfirestore: AngularFirestore, 
@@ -41,12 +38,6 @@ export class AuthService {
         })
       );
     }
-
-  getAllUsers() {
-    this.usersCollection = this.angularfirestore.collection<Person>('Person');
-    return (this.users$ = this.usersCollection.valueChanges());
-  }
-  
 
   signUp(user: UserInformation): Observable<any> {
     return new Observable((observer) => {

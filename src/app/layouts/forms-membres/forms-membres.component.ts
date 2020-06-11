@@ -42,7 +42,7 @@ export class FormsMembresComponent implements OnInit {
 
   isLoading: boolean = false;
 
-  getManagerID: string;
+  // getManagerID: string;
   
   nation$ = nationalite;
   Langues: string[] = ['Français', 'Anglais', 'Lingala', 'Tshiluba', 'Swahili', 'Kikongo'];
@@ -100,7 +100,7 @@ export class FormsMembresComponent implements OnInit {
         };
         this.membresService.createMembres(this.membresInfo);
         this.addMembresForm.reset();
-        this.router.navigate(['/admin/forms/membres/membres-list'])
+        this.router.navigate(['/layouts/home'])
         this.showSnackbar();
         // console.log(this.membresInfo);
       } else {
@@ -110,8 +110,8 @@ export class FormsMembresComponent implements OnInit {
 
 
   showSnackbar() {
-		this.snackbar.open('Formulaires Enregistré!', '', {
-      duration: 6000
+		this.snackbar.open('Formulaires a été Enregistré!', '', {
+      duration: 8000
     });
   }
 

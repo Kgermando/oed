@@ -60,6 +60,16 @@ import { Person } from 'src/app/auth/services/models/user';
         );
     }
 
+    getAllPerson(): Observable<any> {
+      return new Observable(observer => {
+        this.afs.collection<Person>("Person")
+          .snapshotChanges()
+          .subscribe(Person => {
+              observer.next(Person);
+        });
+      })
+    }
+
     getProductBySupplier(ref?: QueryFn): Observable<any> {
         return new Observable(observer => {
           this.angularfireauth.authState.subscribe(Person => {

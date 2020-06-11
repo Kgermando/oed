@@ -42,7 +42,7 @@ export class FormsPersonMoraleComponent implements OnInit {
   }
 
   isPreview = false;
-  getManagerId: string;
+  // getManagerId: string;
 
   nation$ = nationalite;
 
@@ -101,12 +101,12 @@ export class FormsPersonMoraleComponent implements OnInit {
         Phone: this.persMoraleFG.value.Phone,
         Email: this.persMoraleFG.value.Email,
         PhotoUrl: this.imgDownloadUrl,
-        managerId: this.getManagerId,
+        // managerId: this.getManagerId,
         Created: new Date(),
       };
       this.persMoraleService.createpersMorale(this.persMoraleForm);
       this.showSnackbar();
-      this.router.navigate(['/admin/forms/pers-morale/pers-morale-list']);
+      this.router.navigate(['/layouts/home']);
     } else {
       this.openErrorBar();
     }
@@ -114,8 +114,8 @@ export class FormsPersonMoraleComponent implements OnInit {
   }
 
   showSnackbar() {
-		this.snackbar.open('Formulaires Envoyé!', '', {
-      duration: 6000
+		this.snackbar.open('Formulaires a été Envoyé!', '', {
+      duration: 8000
     });
   }
 
