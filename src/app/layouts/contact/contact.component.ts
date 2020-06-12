@@ -39,7 +39,7 @@ errorMessage = 'Vérifiez les champs';
         // id: ['', Validators.required],
         FullName: ['', Validators.required],
         Telephone: ['', Validators.required],
-        Email: ['', Validators.required],
+        Email: [''],
         Sujet: ['', Validators.required],
         Message: ['', Validators.required]
       })

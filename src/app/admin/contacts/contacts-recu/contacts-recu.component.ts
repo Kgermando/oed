@@ -39,7 +39,7 @@ export class ContactsRecuComponent implements OnInit {
         this.dataSource = new MatTableDataSource(contacts);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-  })
+    })
   }
  
 

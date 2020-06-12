@@ -1,45 +1,45 @@
 
 <div fxLayout="column" class="example-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource" matSort>
-      <!-- Position Column -->
-      <ng-container matColumnDef="Title" sticky>
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Titre </mat-header-cell>
-        <mat-cell *matCellDef="let element"> 
-            <a [routerLink]="[ '/admin/opportunity/opportunity-view', element.id ]"> {{ element.Title }}</a> 
-        </mat-cell>
-      </ng-container>
+  <mat-table #table [dataSource]="dataSource" matSort>
+    <!-- Position Column -->
+    <ng-container matColumnDef="Title" sticky>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Titre </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+          <a [routerLink]="[ '/admin/opportunity/opportunity-view', element.id ]"> {{ element.Title }}</a> 
+      </mat-cell>
+    </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="Created">
-        <mat-header-cell *matHeaderCellDef> Created </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.Created.toDate()| date: 'dd/MM/yyyy HH:mm:ss' }}</mat-cell>
-      </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="Created">
+      <mat-header-cell *matHeaderCellDef> Created </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.Created.toDate()| date: 'dd/MM/yyyy HH:mm:ss' }}</mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="edit" >
-        <mat-header-cell *matHeaderCellDef> Modifier </mat-header-cell>
-        <mat-cell *matCellDef="let element" class="cursor-pointer">
-            <a (click)="removeProduct(element.id)">
-                <mat-icon>edit</mat-icon>
-            </a> 
-        </mat-cell>
-      </ng-container>
-  
-      <!-- Weight Column -->
-      <ng-container matColumnDef="remove" >
-        <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
-        <mat-cell *matCellDef="let element" class="cursor-pointer">
-            <a (click)="removeProduct(element.id)">
-                <mat-icon>delete_sweep</mat-icon>
-            </a> 
-        </mat-cell>
-      </ng-container>
-  
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-    </mat-table>
-    <mat-paginator
-      [pageSizeOptions]="[10, 20]"
-      showFirstLastButtons
-    ></mat-paginator>
-  </div>
+    <ng-container matColumnDef="edit" >
+      <mat-header-cell *matHeaderCellDef> Modifier </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="cursor-pointer">
+          <a (click)="removeProduct(element.id)">
+              <mat-icon>edit</mat-icon>
+          </a> 
+      </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="remove" >
+      <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="cursor-pointer">
+          <a (click)="removeProduct(element.id)">
+              <mat-icon>delete_sweep</mat-icon>
+          </a> 
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <mat-paginator
+    [pageSizeOptions]="[10, 20]"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>
   
