@@ -31,7 +31,7 @@
     "bootstrap": "^4.5.0",
     "firebase": "^7.14.3",
     "jquery": "^3.5.1",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "lottie-web": "^5.6.10",
     "ngx-editor": "^5.0.0-alpha.7",
     "ngx-lottie": "^6.0.0",
